@@ -42,7 +42,13 @@
     <ItemGroup>
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="src\Items\Base\Item.cs" />
+        <Compile Include="src\Items\Base\Weapon.cs" />
+        <Compile Include="src\Items\Enums\ItemTypeEnum.cs" />
+        <Compile Include="src\Items\Enums\WeaponItemTypeEnum.cs" />
+        <Compile Include="src\Units\Characters\Base\Bag.cs" />
         <Compile Include="src\Units\Characters\Base\Character.cs" />
+        <Compile Include="src\Units\Characters\Base\Inventory.cs" />
         <Compile Include="src\Units\Characters\ClassAscendancy\Mage\Elementalist\Elementalist.cs" />
         <Compile Include="src\Units\Characters\ClassAscendancy\Mage\Necromancer\Necromancer.cs" />
         <Compile Include="src\Units\Characters\ClassAscendancy\Mage\Occultist\Occultist.cs" />
@@ -55,6 +61,7 @@
         <Compile Include="src\Units\Characters\Classes\Mage\Mage.cs" />
         <Compile Include="src\Units\Characters\Classes\Shadow\Shadow.cs" />
         <Compile Include="src\Units\Characters\Classes\Warrior\Warrior.cs" />
+        <Compile Include="src\Units\Characters\Enums\CharacterClassEnum.cs" />
         <Compile Include="src\Units\Enemies\Base\Enemy.cs" />
         <Compile Include="src\Units\Enemies\Bosses\Constrictor\Constrictor.cs" />
         <Compile Include="src\Units\Enemies\Bosses\Enslaver\Enslaver.cs" />

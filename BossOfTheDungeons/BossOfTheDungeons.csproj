@@ -55,11 +55,21 @@
         <Compile Include="src\Units\Characters\Classes\Mage\Mage.cs" />
         <Compile Include="src\Units\Characters\Classes\Shadow\Shadow.cs" />
         <Compile Include="src\Units\Characters\Classes\Warrior\Warrior.cs" />
+        <Compile Include="src\Units\Enemies\Base\Enemy.cs" />
+        <Compile Include="src\Units\Enemies\Bosses\Constrictor\Constrictor.cs" />
+        <Compile Include="src\Units\Enemies\Bosses\Enslaver\Enslaver.cs" />
+        <Compile Include="src\Units\Enemies\Bosses\Eradicator\Eradicator.cs" />
+        <Compile Include="src\Units\Enemies\Bosses\Purifier\Purifier.cs" />
+        <Compile Include="src\Units\Enemies\Magical\MeleeMagicEnemy.cs" />
+        <Compile Include="src\Units\Enemies\Magical\RangeMagicEnemy.cs" />
+        <Compile Include="src\Units\Enemies\Rare\BloodViper\BloodViper.cs" />
+        <Compile Include="src\Units\Enemies\Rare\FireChimera\FireChimera.cs" />
+        <Compile Include="src\Units\Enemies\Rare\Ursa\Ursa.cs" />
         <Compile Include="src\Utils\ArmorCalculation.cs" />
         <Compile Include="src\Utils\DamageCalculation.cs" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="src\Units\Enemies\" />
+      <Folder Include="src\Units\Enemies\UberBosses\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

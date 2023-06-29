@@ -9,26 +9,34 @@ namespace BossOfTheDungeons.Units.Characters.Base
         public string Name { get; }
         public CharacterClassEnum? Class { get; }
         
-        private Inventory _inventory;
-        private Bag _bag;
+        private readonly Inventory _inventory;
+        private readonly Bag _bag;
 
-        public Character(string name)
+        public Character(string name, CharacterClassEnum characterClass)
         {
             Name = name;
-            Class = null;
+            Class = characterClass;
 
             _inventory = new Inventory();
             _bag = new Bag();
         }
 
-        public void TakeItem(Item item)
+        public void CharacterInfo()
         {
-            _bag.SetItem(item);
+            Console.WriteLine("Характеристики вашего персонажа:");
+            Console.WriteLine($"Имя: {Name}");
+            Console.WriteLine($"Класс: {Class}");
         }
 
         public void MyBag()
         {
+            Console.WriteLine("Ваша сумка:");
             _bag.Show();
+        }
+
+        public void TakeItem(Item item)
+        {
+            _bag.SetItem(item);
         }
     }
 }

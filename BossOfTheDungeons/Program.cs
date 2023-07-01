@@ -4,6 +4,7 @@ using BossOfTheDungeons.Items.Enums;
 using BossOfTheDungeons.Structs.Initialization;
 using BossOfTheDungeons.Units.Characters.Base;
 using BossOfTheDungeons.Units.Characters.Enums;
+using BossOfTheDungeons.Shopping.Base;
 
 namespace BossOfTheDungeons
 {
@@ -20,28 +21,20 @@ namespace BossOfTheDungeons
                 ConsoleClear();
                 
                 Character character = new (initData.Name, initData.Class);
+
                 Weapon item = new ("Палка", ItemTypeEnum.Weapon, WeaponItemTypeEnum.TwoHanded);
                 character.TakeItem(item);
 
-                Console.WriteLine("Нажмите '1', что бы открыть характеристики.");
-                Console.WriteLine("Нажмите '2', что бы открыть сумку.");
-                var pressedKey = Console.ReadKey();
+                Shop shop = new Shop(new []
+                    {
+                        new Item("Обычная кольчуга", ItemTypeEnum.Gloves),
+                        new Item("Шлем", ItemTypeEnum.Helmet),
+                        new Weapon("Волшебная палка", ItemTypeEnum.Weapon, WeaponItemTypeEnum.OneHanded)
+                    }
+                );
 
-                if (pressedKey.Key == ConsoleKey.D1)
-                {
-                    ConsoleClear();
-                    character.CharacterInfo();
-                    Console.ReadKey();
-                }
-
-                if (pressedKey.Key == ConsoleKey.D2)
-                {
-                    ConsoleClear();
-                    character.MyBag();
-                    Console.ReadKey();
-                }
+                ShowCharacterGameActions(character, shop);
             }
-            
         }
 
         private static void ConsoleClear()
@@ -93,6 +86,44 @@ namespace BossOfTheDungeons
             }
 
             return new InitCharacter(charName, (CharacterClassEnum)selectedClass);
+        }
+
+        private static void ShowCharacterGameActions(Character character, Shop shop)
+        {
+            Console.WriteLine("Нажмите '1', что бы открыть характеристики.");
+            Console.WriteLine("Нажмите '2', что бы открыть сумку.");
+            Console.WriteLine("Нажмите '3', что бы открыть магазин.");
+            Console.WriteLine("Нажмите '4', что бы открыть инвентарь.");
+
+            var pressedKey = Console.ReadKey();
+
+            if (pressedKey.Key == ConsoleKey.D1)
+            {
+                ConsoleClear();
+                character.CharacterInfo();
+                Console.ReadKey();
+            }
+
+            if (pressedKey.Key == ConsoleKey.D2)
+            {
+                ConsoleClear();
+                character.MyBag();
+                Console.ReadKey();
+            }
+
+            if (pressedKey.Key == ConsoleKey.D3)
+            {
+                ConsoleClear();
+                shop.Show();
+                Console.ReadKey();
+            }
+
+            if (pressedKey.Key == ConsoleKey.D4)
+            {
+                ConsoleClear();
+                character.MyInventory();
+                Console.ReadKey();
+            }
         }
     }
 }

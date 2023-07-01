@@ -46,6 +46,7 @@
     <Compile Include="src\Items\Base\Weapon.cs" />
     <Compile Include="src\Items\Enums\ItemTypeEnum.cs" />
     <Compile Include="src\Items\Enums\WeaponItemTypeEnum.cs" />
+    <Compile Include="src\Shopping\Base\Shop.cs" />
     <Compile Include="src\Structs\Initialization\InitCharacter.cs" />
     <Compile Include="src\Units\Characters\Base\Bag.cs" />
     <Compile Include="src\Units\Characters\Base\Character.cs" />

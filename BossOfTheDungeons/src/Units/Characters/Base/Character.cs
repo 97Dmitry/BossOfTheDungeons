@@ -6,17 +6,16 @@ namespace BossOfTheDungeons.Units.Characters.Base
 {
     public class Character
     {
-        public string Name { get; }
-        public CharacterClassEnum? Class { get; }
+        private readonly string _name;
+        private CharacterClassEnum? _class;
         
         private readonly Inventory _inventory;
         private readonly Bag _bag;
 
         public Character(string name, CharacterClassEnum characterClass)
         {
-            Name = name;
-            Class = characterClass;
-
+            _name = name;
+            _class = characterClass;
             _inventory = new Inventory();
             _bag = new Bag();
         }
@@ -24,19 +23,25 @@ namespace BossOfTheDungeons.Units.Characters.Base
         public void CharacterInfo()
         {
             Console.WriteLine("Характеристики вашего персонажа:");
-            Console.WriteLine($"Имя: {Name}");
-            Console.WriteLine($"Класс: {Class}");
+            Console.WriteLine($"Имя: {_name}");
+            Console.WriteLine($"Класс: {_class}");
         }
 
         public void MyBag()
         {
-            Console.WriteLine("Ваша сумка:");
+            Console.WriteLine("Ваша сумка:\n");
             _bag.Show();
         }
 
         public void TakeItem(Item item)
         {
             _bag.SetItem(item);
+        }
+
+        public void MyInventory()
+        {
+            Console.WriteLine("Ваш инвентарь:\n");
+            _inventory.Show();
         }
     }
 }

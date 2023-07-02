@@ -28,7 +28,7 @@ public class Shop
             }
             else
             {
-                Console.WriteLine($"{i + 1}. {_products[i].Type} {_products[i].Name}");
+                Console.WriteLine($"{i + 1}. {_products[i].Name} {_products[i].Type} ");
             }
         }
         Console.Write("\n");

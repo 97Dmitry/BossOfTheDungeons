@@ -47,6 +47,13 @@
     <Compile Include="src\Items\Enums\ItemTypeEnum.cs" />
     <Compile Include="src\Items\Enums\WeaponItemTypeEnum.cs" />
     <Compile Include="src\Shopping\Base\Shop.cs" />
+    <Compile Include="src\Skills\Base\Skill.cs" />
+    <Compile Include="src\Skills\Enums\DamageType.cs" />
+    <Compile Include="src\Skills\Enums\SkillType.cs" />
+    <Compile Include="src\Skills\MagicalSkills\FireBall.cs" />
+    <Compile Include="src\Skills\PhysicalSkills\DoubleStrike.cs" />
+    <Compile Include="src\Skills\PhysicalSkills\SteelStrike.cs" />
+    <Compile Include="src\Skills\Utils\DamageCalculationParameters.cs" />
     <Compile Include="src\Structs\Initialization\InitCharacter.cs" />
     <Compile Include="src\Units\Characters\Base\Bag.cs" />
     <Compile Include="src\Units\Characters\Base\Character.cs" />
@@ -64,6 +71,9 @@
     <Compile Include="src\Units\Characters\Classes\Shadow\Shadow.cs" />
     <Compile Include="src\Units\Characters\Classes\Warrior\Warrior.cs" />
     <Compile Include="src\Units\Characters\Enums\CharacterClassEnum.cs" />
+    <Compile Include="src\Units\Characters\Structs\Dexterity.cs" />
+    <Compile Include="src\Units\Characters\Structs\Intelligence.cs" />
+    <Compile Include="src\Units\Characters\Structs\Strength.cs" />
     <Compile Include="src\Units\Enemies\Base\Enemy.cs" />
     <Compile Include="src\Units\Enemies\Bosses\Constrictor\Constrictor.cs" />
     <Compile Include="src\Units\Enemies\Bosses\Enslaver\Enslaver.cs" />
@@ -79,6 +89,7 @@
     <Compile Include="src\Utils\ListExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\Skills\ChaosSkills\" />
     <Folder Include="src\Units\Enemies\UberBosses\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

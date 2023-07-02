@@ -14,15 +14,14 @@ namespace BossOfTheDungeons
         {
             ConsoleClear();
 
-            var initData = InitCharacterData();
+            var initData = InitCharacterData(out var item);
             Character character = new(initData.Name, initData.Class);
 
-            Weapon item = new("Палка", ItemTypeEnum.Weapon, WeaponItemTypeEnum.TwoHanded, 1);
             character.TakeItem(item);
 
             Shop shop = new Shop(new[]
                 {
-                    new Item("Обычная кольчуга", ItemTypeEnum.Gloves, 15),
+                    new Item("Обычная кольчуга", ItemTypeEnum.Armor, 15),
                     new Item("Шлем", ItemTypeEnum.Helmet, 10),
                     new Weapon("Волшебная палка", ItemTypeEnum.Weapon, WeaponItemTypeEnum.OneHanded, 25)
                 }
@@ -44,7 +43,7 @@ namespace BossOfTheDungeons
             Console.SetCursorPosition(0, 2);
         }
 
-        private static InitCharacter InitCharacterData()
+        private static InitCharacter InitCharacterData(out Item item)
         {
             Console.Write("Введите имя вашего персонажа: ");
             var charName = Console.ReadLine();
@@ -82,6 +81,14 @@ namespace BossOfTheDungeons
                     ConsoleClear();
                 }
             }
+
+            item = selectedClass switch
+            {
+                CharacterClassEnum.Warrior => new Weapon("Палка", ItemTypeEnum.Weapon, WeaponItemTypeEnum.TwoHanded, 5),
+                CharacterClassEnum.Shadow => new Weapon("Кинжал", ItemTypeEnum.Weapon, WeaponItemTypeEnum.OneHanded, 2),
+                CharacterClassEnum.Mage => new Weapon("Жезл", ItemTypeEnum.Weapon, WeaponItemTypeEnum.OneHanded, 4),
+                _ => new Item("Тряпичные перчатки", ItemTypeEnum.Gloves, 1)
+            };
 
             return new InitCharacter(charName, (CharacterClassEnum)selectedClass);
         }

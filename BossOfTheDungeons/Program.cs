@@ -86,6 +86,79 @@ namespace BossOfTheDungeons
             return new InitCharacter(charName, (CharacterClassEnum)selectedClass);
         }
 
+        private static void ShopActions(Character character, Shop shop)
+        {
+            while (true)
+            {
+                ConsoleClear();
+                shop.Show();
+
+                Console.WriteLine("Нажмите 1, если хотите что то купить");
+                Console.WriteLine("Нажмите 2, что бы вернуться");
+
+                var shopPressedKey = Console.ReadKey();
+
+                if (shopPressedKey.Key == ConsoleKey.D1)
+                {
+                    while (true)
+                    {
+                        ConsoleClear();
+                        shop.Show();
+
+                        Console.WriteLine("Введите номер товара, который хотите купить");
+                        Console.WriteLine("Или введите 'exit', что бы вернуться в магазин");
+
+                        var commandOrProduct = Console.ReadLine();
+
+                        if (commandOrProduct == "exit")
+                        {
+                            break;
+                        }
+
+                        if (int.TryParse(commandOrProduct, out int item))
+                        {
+                            if (item > shop.ProductCount())
+                            {
+                                Console.WriteLine("Вы выбрали несуществующий продукт");
+                                Console.ReadKey();
+                                continue;
+                            }
+
+                            var product = shop.GetProduct(item - 1);
+
+                            if (product != null)
+                            {
+                                if (character.IsCanPay(product))
+                                {
+                                    var purchasedItem = shop.SellProduct(item - 1, character);
+                                    Console.WriteLine($"Успешно куплено: {purchasedItem.Name}");
+                                    Console.ReadKey();
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("У вас недостаточно золота");
+                                    Console.ReadKey();
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Нужно ввести число или команду");
+                            Console.ReadKey();
+                        }
+                    }
+                }
+
+                if (shopPressedKey.Key == ConsoleKey.D2)
+                {
+                    break;
+                }
+
+            }
+        }
+
         private static void ShowCharacterGameActions(Character character, Shop shop)
         {
             Console.WriteLine("Нажмите '1', что бы открыть характеристики.");
@@ -111,77 +184,7 @@ namespace BossOfTheDungeons
 
             if (pressedKey.Key == ConsoleKey.D3)
             {
-                bool isExit = false;
-                while (!isExit)
-                {
-                    ConsoleClear();
-                    shop.Show();
-
-                    Console.WriteLine("Нажмите 1, если хотите что то купить");
-                    Console.WriteLine("Нажмите 2, что бы вернуться");
-
-                    var shopPressedKey = Console.ReadKey();
-
-                    if (shopPressedKey.Key == ConsoleKey.D1)
-                    {
-                        while (true)
-                        {
-                            ConsoleClear();
-                            shop.Show();
-
-                            Console.WriteLine("Введите номер товара, который хотите купить");
-                            Console.WriteLine("Или введите 'exit', что бы вернуться в магазин");
-
-                            var commandOrProduct = Console.ReadLine();
-
-                            if (commandOrProduct == "exit")
-                            {
-                                break;
-                            }
-
-                            if (int.TryParse(commandOrProduct, out int item))
-                            {
-                                if (item > shop.ProductCount())
-                                {
-                                    Console.WriteLine("Вы выбрали несуществующий продукт");
-                                    Console.ReadKey();
-                                    continue;
-                                }
-
-                                var product = shop.GetProduct(item - 1);
-
-                                if (product != null)
-                                {
-                                    if (character.IsCanPay(product))
-                                    {
-                                        var purchasedItem = shop.SellProduct(item - 1, character);
-                                        Console.WriteLine($"Успешно куплено: {purchasedItem.Name}");
-                                        Console.ReadKey();
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("У вас недостаточно золота");
-                                        Console.ReadKey();
-                                        break;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Нужно ввести число или команду");
-                                Console.ReadKey();
-                            }
-                        }
-                    }
-
-                    if (shopPressedKey.Key == ConsoleKey.D2)
-                    {
-                        break;
-                    }
-                    
-                }
-                
+                ShopActions(character, shop);
             }
 
             if (pressedKey.Key == ConsoleKey.D4)

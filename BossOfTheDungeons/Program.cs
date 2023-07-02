@@ -15,24 +15,22 @@ namespace BossOfTheDungeons
             ConsoleClear();
 
             var initData = InitCharacterData();
+            Character character = new(initData.Name, initData.Class);
+
+            Weapon item = new("Палка", ItemTypeEnum.Weapon, WeaponItemTypeEnum.TwoHanded, 1);
+            character.TakeItem(item);
+
+            Shop shop = new Shop(new[]
+                {
+                    new Item("Обычная кольчуга", ItemTypeEnum.Gloves, 15),
+                    new Item("Шлем", ItemTypeEnum.Helmet, 10),
+                    new Weapon("Волшебная палка", ItemTypeEnum.Weapon, WeaponItemTypeEnum.OneHanded, 25)
+                }
+            );
 
             while (true)
             {
                 ConsoleClear();
-                
-                Character character = new (initData.Name, initData.Class);
-
-                Weapon item = new ("Палка", ItemTypeEnum.Weapon, WeaponItemTypeEnum.TwoHanded);
-                character.TakeItem(item);
-
-                Shop shop = new Shop(new []
-                    {
-                        new Item("Обычная кольчуга", ItemTypeEnum.Gloves),
-                        new Item("Шлем", ItemTypeEnum.Helmet),
-                        new Weapon("Волшебная палка", ItemTypeEnum.Weapon, WeaponItemTypeEnum.OneHanded)
-                    }
-                );
-
                 ShowCharacterGameActions(character, shop);
             }
         }
@@ -55,12 +53,12 @@ namespace BossOfTheDungeons
 
             CharacterClassEnum? selectedClass = null;
 
-            while (!Convert.ToBoolean(selectedClass))
+            while (selectedClass == null)
             {
                 Console.WriteLine("Выберите класс вашего персонажа: ");
 
                 var classes = (CharacterClassEnum[])Enum.GetValues(typeof(CharacterClassEnum));
-                
+
                 for (var i = 0; i < classes.Length; i++)
                 {
                     string separator = i == classes.Length - 1 ? "\n" : ", ";
@@ -77,7 +75,7 @@ namespace BossOfTheDungeons
                     _ => null
                 };
                 Console.WriteLine();
-                if (!Convert.ToBoolean(selectedClass))
+                if (selectedClass == null)
                 {
                     Console.WriteLine("Введено не корректное значение, попробуйте еще раз");
                     Console.ReadKey();
@@ -113,9 +111,77 @@ namespace BossOfTheDungeons
 
             if (pressedKey.Key == ConsoleKey.D3)
             {
-                ConsoleClear();
-                shop.Show();
-                Console.ReadKey();
+                bool isExit = false;
+                while (!isExit)
+                {
+                    ConsoleClear();
+                    shop.Show();
+
+                    Console.WriteLine("Нажмите 1, если хотите что то купить");
+                    Console.WriteLine("Нажмите 2, что бы вернуться");
+
+                    var shopPressedKey = Console.ReadKey();
+
+                    if (shopPressedKey.Key == ConsoleKey.D1)
+                    {
+                        while (true)
+                        {
+                            ConsoleClear();
+                            shop.Show();
+
+                            Console.WriteLine("Введите номер товара, который хотите купить");
+                            Console.WriteLine("Или введите 'exit', что бы вернуться в магазин");
+
+                            var commandOrProduct = Console.ReadLine();
+
+                            if (commandOrProduct == "exit")
+                            {
+                                break;
+                            }
+
+                            if (int.TryParse(commandOrProduct, out int item))
+                            {
+                                if (item > shop.ProductCount())
+                                {
+                                    Console.WriteLine("Вы выбрали несуществующий продукт");
+                                    Console.ReadKey();
+                                    continue;
+                                }
+
+                                var product = shop.GetProduct(item - 1);
+
+                                if (product != null)
+                                {
+                                    if (character.IsCanPay(product))
+                                    {
+                                        var purchasedItem = shop.SellProduct(item - 1, character);
+                                        Console.WriteLine($"Успешно куплено: {purchasedItem.Name}");
+                                        Console.ReadKey();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("У вас недостаточно золота");
+                                        Console.ReadKey();
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Нужно ввести число или команду");
+                                Console.ReadKey();
+                            }
+                        }
+                    }
+
+                    if (shopPressedKey.Key == ConsoleKey.D2)
+                    {
+                        break;
+                    }
+                    
+                }
+                
             }
 
             if (pressedKey.Key == ConsoleKey.D4)

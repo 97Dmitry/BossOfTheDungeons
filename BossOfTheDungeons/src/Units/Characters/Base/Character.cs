@@ -8,7 +8,7 @@ namespace BossOfTheDungeons.Units.Characters.Base
     {
         private readonly string _name;
         private CharacterClassEnum? _class;
-        
+        private int _money;
         private readonly Inventory _inventory;
         private readonly Bag _bag;
 
@@ -18,6 +18,7 @@ namespace BossOfTheDungeons.Units.Characters.Base
             _class = characterClass;
             _inventory = new Inventory();
             _bag = new Bag();
+            _money = 100;
         }
 
         public void CharacterInfo()
@@ -25,6 +26,7 @@ namespace BossOfTheDungeons.Units.Characters.Base
             Console.WriteLine("Характеристики вашего персонажа:");
             Console.WriteLine($"Имя: {_name}");
             Console.WriteLine($"Класс: {_class}");
+            Console.WriteLine($"Золото: {_money}");
         }
 
         public void MyBag()
@@ -42,6 +44,19 @@ namespace BossOfTheDungeons.Units.Characters.Base
         {
             Console.WriteLine("Ваш инвентарь:\n");
             _inventory.Show();
+        }
+
+        public bool IsCanPay(Item item)
+        {
+            return item.Price < _money;
+        }
+
+        public int BuyItem(Item item)
+        {
+            int money = item.Price;
+            _money -= money;
+            this.TakeItem(item);
+            return money;
         }
     }
 }

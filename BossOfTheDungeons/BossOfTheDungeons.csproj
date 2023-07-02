@@ -76,6 +76,7 @@
     <Compile Include="src\Units\Enemies\Rare\Ursa\Ursa.cs" />
     <Compile Include="src\Utils\ArmorCalculation.cs" />
     <Compile Include="src\Utils\DamageCalculation.cs" />
+    <Compile Include="src\Utils\ListExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\Units\Enemies\UberBosses\" />

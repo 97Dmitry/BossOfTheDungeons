@@ -19,7 +19,7 @@ namespace BossOfTheDungeons.Units.Characters.Base
         private Strength _strength;
         private Dexterity _dexterity;
         private Intelligence _intelligence;
-
+        
         // Common
         private readonly Inventory _inventory;
         private readonly Bag _bag;

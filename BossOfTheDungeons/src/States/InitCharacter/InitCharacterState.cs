@@ -2,6 +2,7 @@
 using BossOfTheDungeons.Units.Characters.Base;
 using System.Collections.Generic;
 using System;
+using BossOfTheDungeons.GUI;
 using BossOfTheDungeons.Items.Base;
 using BossOfTheDungeons.Items.Enums;
 using BossOfTheDungeons.Units.Characters.Enums;
@@ -23,7 +24,7 @@ public class InitCharacterState : State
         Console.Write("Введите имя вашего персонажа: ");
         var charName = Console.ReadLine();
 
-        ConsoleClear();
+        Gui.ConsoleClear();
 
         CharacterClassEnum? selectedClass = null;
 
@@ -53,7 +54,7 @@ public class InitCharacterState : State
             {
                 Console.WriteLine("Введено не корректное значение, попробуйте еще раз");
                 Console.ReadKey();
-                ConsoleClear();
+                Gui.ConsoleClear();
             }
         }
 

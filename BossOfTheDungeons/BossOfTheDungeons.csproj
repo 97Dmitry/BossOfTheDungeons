@@ -43,6 +43,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\GUI\Gui.cs" />
+    <Compile Include="src\GUI\Selector.cs" />
     <Compile Include="src\Items\Base\Item.cs" />
     <Compile Include="src\Items\Base\Weapon.cs" />
     <Compile Include="src\Items\Enums\ItemTypeEnum.cs" />
@@ -57,7 +59,7 @@
     <Compile Include="src\Skills\Utils\DamageCalculationParameters.cs" />
     <Compile Include="src\States\Bag\BagState.cs" />
     <Compile Include="src\States\Characteristic\CharacteristicState.cs" />
-    <Compile Include="src\States\InitCharacterData\InitCharacterDataState.cs" />
+    <Compile Include="src\States\InitCharacter\InitCharacterState.cs" />
     <Compile Include="src\States\Inventory\InventoryState.cs" />
     <Compile Include="src\States\Shopping\ShopState.cs" />
     <Compile Include="src\Units\Characters\Base\Bag.cs" />

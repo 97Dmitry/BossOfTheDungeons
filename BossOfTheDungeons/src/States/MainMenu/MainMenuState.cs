@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using BossOfTheDungeons.GUI;
 using BossOfTheDungeons.Shopping.Base;
 using BossOfTheDungeons.States.Bag;
 using BossOfTheDungeons.States.Base;
@@ -25,18 +26,16 @@ public class MainMenuState : State
     public override void Update()
     {
         base.Update();
-        Console.WriteLine("Нажмите '1', что бы открыть характеристики.");
-        Console.WriteLine("Нажмите '2', что бы открыть сумку.");
-        Console.WriteLine("Нажмите '3', что бы открыть магазин.");
-        Console.WriteLine("Нажмите '4', что бы открыть инвентарь.");
-        Console.WriteLine("Нажмите '9', что бы выйти.");
+        var selector = new Selector(
+            new[] { "Характеристики", "Сумка", "Магазин", "Инвентарь", "Выход" },
+            separator: new[] { 3 }
+        );
+        var selectedIndex = selector.Run();
 
-        var pressedKey = Console.ReadKey();
-
-        if (pressedKey.Key == ConsoleKey.D1) AddStack(new CharacteristicState(Stacks, _character));
-        if (pressedKey.Key == ConsoleKey.D2) AddStack(new BagState(Stacks, _character));
-        if (pressedKey.Key == ConsoleKey.D3) AddStack(new ShopState(Stacks, _character, _shop));
-        if (pressedKey.Key == ConsoleKey.D4) AddStack(new InventoryState(Stacks, _character));
-        if (pressedKey.Key == ConsoleKey.D9) End = true;
+        if (selectedIndex == 0) AddStack(new CharacteristicState(Stacks, _character));
+        if (selectedIndex == 1) AddStack(new BagState(Stacks, _character));
+        if (selectedIndex == 2) AddStack(new ShopState(Stacks, _character, _shop));
+        if (selectedIndex == 3) AddStack(new InventoryState(Stacks, _character));
+        if (selectedIndex == 4) End = true;
     }
 }

@@ -1,3 +1,4 @@
+using BossOfTheDungeons.GUI;
 using System;
 using System.Collections.Generic;
 
@@ -25,15 +26,6 @@ public class State
 
     public virtual void Update()
     {
-        ConsoleClear();
-    }
-
-    protected static void ConsoleClear()
-    {
-        Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("--- Boss Of The Dungeons ---");
-        Console.ResetColor();
-        Console.SetCursorPosition(0, 2);
+        Gui.ConsoleClear();
     }
 }

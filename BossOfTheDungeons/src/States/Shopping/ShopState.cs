@@ -3,6 +3,7 @@ using BossOfTheDungeons.Units.Characters.Base;
 using System.Collections.Generic;
 using BossOfTheDungeons.Shopping.Base;
 using System;
+using BossOfTheDungeons.GUI;
 
 namespace BossOfTheDungeons.States.Shopping;
 
@@ -22,25 +23,35 @@ public class ShopState : State
     {
         base.Update();
         _shop.Show();
-        Console.WriteLine("Нажмите 1, если хотите что то купить");
-        Console.WriteLine("Нажмите 2, что бы вернуться");
 
-        var shopPressedKey = Console.ReadKey();
+        var selector = new Selector(
+            new[] { "К покупкам", "Выход" },
+            separator: new[] { 0 },
+            afterClear: () => _shop.Show()
+        );
+        var selectedIndex = selector.Run();
 
-        if (shopPressedKey.Key == ConsoleKey.D1)
+        if (selectedIndex == 0)
             while (true)
             {
-                ConsoleClear();
+                Gui.ConsoleClear();
                 _shop.Show();
 
-                Console.WriteLine("Введите номер товара, который хотите купить");
-                Console.WriteLine("Или введите 'exit', что бы вернуться в магазин");
+                var shopSelector = new Selector(
+                    new[] { "Выбрать товар", "Выход" },
+                    separator: new[] { 0 },
+                    afterClear: () => _shop.Show()
+                );
+                var shopSelectedIndex = shopSelector.Run();
 
-                var commandOrProduct = Console.ReadLine();
+                if (shopSelectedIndex == 1) break;
 
-                if (commandOrProduct == "exit") break;
+                Gui.ConsoleClear();
+                _shop.Show();
+                Console.Write("Введите номер товара: ");
+                var productIndex = Console.ReadLine();
 
-                if (int.TryParse(commandOrProduct, out var item))
+                if (int.TryParse(productIndex, out var item))
                 {
                     if (item > _shop.ProductCount())
                     {
@@ -75,6 +86,6 @@ public class ShopState : State
                 }
             }
 
-        if (shopPressedKey.Key == ConsoleKey.D2) End = true;
+        if (selectedIndex == 1) End = true;
     }
 }

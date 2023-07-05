@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using BossOfTheDungeons.Items.Base;
+using BossOfTheDungeons.Items.Enums;
 using BossOfTheDungeons.Skills.Base;
 using BossOfTheDungeons.Skills.MagicalSkills;
 using BossOfTheDungeons.Skills.PhysicalSkills;
@@ -141,6 +143,11 @@ public class Character
         _bag.Show();
     }
 
+    public Dictionary<int, Item> GetBagItemsByType(ItemTypeEnum type)
+    {
+        return _bag.GetItemsByType(type);
+    }
+
     public void TakeItem(Item item)
     {
         _bag.SetItem(item);
@@ -150,6 +157,11 @@ public class Character
     {
         Console.WriteLine("Ваш инвентарь:\n");
         _inventory.Show();
+    }
+
+    public void PutItem(Item item, int? slot = 1)
+    {
+        _inventory.SetItem(item, _bag, slot);
     }
 
     public bool IsCanPay(Item item)

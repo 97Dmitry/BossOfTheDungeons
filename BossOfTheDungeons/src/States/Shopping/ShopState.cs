@@ -27,7 +27,7 @@ public class ShopState : State
         var selector = new Selector(
             new[] { "К покупкам", "Выход" },
             separator: new[] { 0 },
-            afterClear: () => _shop.Show()
+            beforeSelector: () => _shop.Show()
         );
         var selectedIndex = selector.Run();
 
@@ -40,7 +40,7 @@ public class ShopState : State
                 var shopSelector = new Selector(
                     new[] { "Выбрать товар", "Выход" },
                     separator: new[] { 0 },
-                    afterClear: () => _shop.Show()
+                    beforeSelector: () => _shop.Show()
                 );
                 var shopSelectedIndex = shopSelector.Run();
 

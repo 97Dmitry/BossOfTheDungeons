@@ -8,19 +8,22 @@ public class Selector
     private string[] _options;
     private string _prompt;
     private int[] _separator;
-    private Action _afterClear;
+    private Action? _beforeSelector;
+    private Action? _afterSelector;
 
     public Selector(
         string[] options,
         string prompt = "(С помощью стрелок выберите действие. Enter для подтверждения)",
         int[] separator = null,
-        Action afterClear = null
+        Action beforeSelector = null,
+        Action afterSelector = null
     )
     {
         _options = options;
         _prompt = prompt;
         _separator = separator;
-        _afterClear = afterClear;
+        _beforeSelector = beforeSelector;
+        _afterSelector = afterSelector;
     }
 
     private void DisplayOptions()
@@ -56,9 +59,12 @@ public class Selector
         {
             Console.CursorVisible = false;
             Gui.ConsoleClear();
-            _afterClear?.Invoke();
+            _beforeSelector?.Invoke();
+            Console.Write("\n");
 
             DisplayOptions();
+
+            _afterSelector?.Invoke();
 
             var keyInfo = Console.ReadKey();
             pressedKey = keyInfo.Key;

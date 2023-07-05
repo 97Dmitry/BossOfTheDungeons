@@ -1,15 +1,16 @@
 ﻿using System;
+using static System.Console;
 
 namespace BossOfTheDungeons.GUI;
 
-public class Gui
+public static class Gui
 {
     public static void ConsoleClear()
     {
-        Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("--- Boss Of The Dungeons ---");
-        Console.ResetColor();
-        Console.SetCursorPosition(0, 2);
+        Clear();
+        ForegroundColor = ConsoleColor.Red;
+        WriteLine("--- Boss Of The Dungeons ---");
+        ResetColor();
+        SetCursorPosition(0, 2);
     }
 }

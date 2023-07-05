@@ -54,6 +54,7 @@ public class Selector
 
         do
         {
+            Console.CursorVisible = false;
             Gui.ConsoleClear();
             _afterClear?.Invoke();
 
@@ -76,6 +77,7 @@ public class Selector
             }
         } while (pressedKey != ConsoleKey.Enter);
 
+        Console.CursorVisible = true;
         return _selectedIndex;
     }
 }

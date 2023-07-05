@@ -7,7 +7,9 @@ namespace BossOfTheDungeons.Skills.PhysicalSkills;
 
 public class SteelStrike : Skill
 {
-    public SteelStrike() : base("Стальной удар", 5, DamageType.PhysicalDamage, SkillType.Normal) {}
+    public SteelStrike() : base("Стальной удар", 5, DamageType.PhysicalDamage, SkillType.Normal)
+    {
+    }
 
     public override int DamageCalculation(DamageCalculationParameters parameters)
     {

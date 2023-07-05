@@ -1,7 +1,5 @@
-﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Warrior.Berserker
+﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Warrior.Berserker;
+
+public class Berserker
 {
-    public class Berserker
-    {
-        
-    }
 }

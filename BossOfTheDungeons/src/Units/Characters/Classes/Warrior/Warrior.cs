@@ -1,7 +1,5 @@
-﻿namespace BossOfTheDungeons.Units.Characters.Classes.Warrior
+﻿namespace BossOfTheDungeons.Units.Characters.Classes.Warrior;
+
+public class Warrior
 {
-    public class Warrior
-    {
-        
-    }
 }

@@ -9,7 +9,7 @@ using BossOfTheDungeons.Units.Characters.Base;
 
 namespace BossOfTheDungeons;
 
-internal class Game
+public class Game
 {
     private readonly Stack<State> _states;
     private Character _character;

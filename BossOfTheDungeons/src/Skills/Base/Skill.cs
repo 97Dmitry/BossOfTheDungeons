@@ -25,7 +25,7 @@ public class Skill
             DamageType.PhysicalDamage => _damage + parameters.PhysicalDamage,
             DamageType.MagicalDamage => _damage + parameters.MagicalDamage,
             DamageType.ChaosDamage => _damage + parameters.ChaosDamage,
-            _ => _damage,
+            _ => _damage
         };
 
         switch (_type)
@@ -33,12 +33,13 @@ public class Skill
             case SkillType.Normal:
                 return damage;
             case SkillType.Rare:
-                return (int)(damage + (damage * 0.5));
+                return (int)(damage + damage * 0.5);
             case SkillType.Legendary:
                 return damage * 2;
             default:
                 return damage;
         }
+
         ;
-    } 
+    }
 }

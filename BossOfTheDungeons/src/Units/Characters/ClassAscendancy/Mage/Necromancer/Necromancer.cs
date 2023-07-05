@@ -1,7 +1,5 @@
-﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Mage.Necromancer
+﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Mage.Necromancer;
+
+public class Necromancer
 {
-    public class Necromancer
-    {
-        
-    }
 }

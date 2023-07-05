@@ -51,27 +51,30 @@ public class Inventory
         switch (type)
         {
             case ItemTypeEnum.Helmet:
-                _helmet = item; break;
+                _helmet = item;
+                break;
             case ItemTypeEnum.Gloves:
-                _gloves = item; break;
+                _gloves = item;
+                break;
             case ItemTypeEnum.Boots:
-                _boots = item; break;
+                _boots = item;
+                break;
             case ItemTypeEnum.Belt:
-                _belt = item; break;
+                _belt = item;
+                break;
             case ItemTypeEnum.Ring:
                 if (slot == 1)
                 {
                     _ring1 = item;
                     break;
                 }
-                if (slot == 2)
-                {
-                    _ring2 = item;
-                    break;
-                }
+
+                if (slot == 2) _ring2 = item;
+
                 break;
             case ItemTypeEnum.Amulet:
-                _amulet = item; break;
+                _amulet = item;
+                break;
             case ItemTypeEnum.Weapon:
                 if (item is Weapon weapon)
                 {
@@ -81,11 +84,13 @@ public class Inventory
                         _weapon2 = null;
                         break;
                     }
+
                     if (weapon.WeaponType == WeaponItemTypeEnum.Shield)
                     {
                         _weapon2 = weapon;
                         break;
                     }
+
                     if (weapon.WeaponType == WeaponItemTypeEnum.OneHanded)
                     {
                         if (slot == 1)
@@ -93,13 +98,11 @@ public class Inventory
                             _weapon1 = weapon;
                             break;
                         }
-                        if (slot == 2)
-                        {
-                            _weapon2 = weapon;
-                            break;
-                        }
+
+                        if (slot == 2) _weapon2 = weapon;
                     }
                 }
+
                 break;
         }
     }

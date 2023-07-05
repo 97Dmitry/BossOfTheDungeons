@@ -6,7 +6,7 @@ public struct Dexterity
 
     public Dexterity(int value)
     {
-        this._value = value;
+        _value = value;
     }
 
     public static implicit operator Dexterity(int value)

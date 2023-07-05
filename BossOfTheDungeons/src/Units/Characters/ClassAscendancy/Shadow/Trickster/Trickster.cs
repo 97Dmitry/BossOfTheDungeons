@@ -1,7 +1,5 @@
-﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Shadow.Trickster
+﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Shadow.Trickster;
+
+public class Trickster
 {
-    public class Trickster
-    {
-        
-    }
 }

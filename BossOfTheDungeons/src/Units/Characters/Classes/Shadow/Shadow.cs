@@ -1,7 +1,5 @@
-﻿namespace BossOfTheDungeons.Units.Characters.Classes.Shadow
+﻿namespace BossOfTheDungeons.Units.Characters.Classes.Shadow;
+
+public class Shadow
 {
-    public class Shadow
-    {
-        
-    }
 }

@@ -1,7 +1,5 @@
-﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Shadow.Raider
+﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Shadow.Raider;
+
+public class Raider
 {
-    public class Raider
-    {
-        
-    }
 }

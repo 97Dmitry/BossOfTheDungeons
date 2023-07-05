@@ -1,7 +1,5 @@
-﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Mage.Elementalist
+﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Mage.Elementalist;
+
+public class Elementalist
 {
-    public class Elementalist
-    {
-        
-    }
 }

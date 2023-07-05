@@ -1,7 +1,5 @@
-﻿namespace BossOfTheDungeons.Units.Characters.Classes.Mage
+﻿namespace BossOfTheDungeons.Units.Characters.Classes.Mage;
+
+public class Mage
 {
-    public class Mage
-    {
-        
-    }
 }

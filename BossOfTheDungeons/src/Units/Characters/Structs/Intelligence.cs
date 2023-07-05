@@ -6,7 +6,7 @@ public struct Intelligence
 
     public Intelligence(int value)
     {
-        this._value = value;
+        _value = value;
     }
 
     public static implicit operator Intelligence(int value)

@@ -1,7 +1,5 @@
-﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Warrior.Inquisitor
+﻿namespace BossOfTheDungeons.Units.Characters.ClassAscendancy.Warrior.Inquisitor;
+
+public class Inquisitor
 {
-    public class Inquisitor
-    {
-        
-    }
 }

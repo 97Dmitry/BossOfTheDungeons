@@ -6,7 +6,7 @@ public struct Strength
 
     public Strength(int value)
     {
-        this._value = value;
+        _value = value;
     }
 
     public static implicit operator Strength(int value)

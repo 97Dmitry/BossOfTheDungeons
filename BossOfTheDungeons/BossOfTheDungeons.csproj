@@ -48,8 +48,12 @@
     <Compile Include="src\GUI\Selector.cs" />
     <Compile Include="src\Items\Base\Item.cs" />
     <Compile Include="src\Items\Base\Weapon.cs" />
+    <Compile Include="src\Items\Enums\ItemPropertyType.cs" />
+    <Compile Include="src\Items\Enums\ItemRate.cs" />
     <Compile Include="src\Items\Enums\ItemTypeEnum.cs" />
     <Compile Include="src\Items\Enums\WeaponItemTypeEnum.cs" />
+    <Compile Include="src\Items\Generator\GenerateItem.cs" />
+    <Compile Include="src\Items\Generator\GenerateItemRare.cs" />
     <Compile Include="src\Shopping\Base\Shop.cs" />
     <Compile Include="src\Skills\Base\Skill.cs" />
     <Compile Include="src\Skills\Enums\DamageType.cs" />

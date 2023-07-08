@@ -5,6 +5,7 @@ using System;
 using BossOfTheDungeons.GUI;
 using BossOfTheDungeons.Items.Base;
 using BossOfTheDungeons.Items.Enums;
+using BossOfTheDungeons.Items.Generator;
 using BossOfTheDungeons.Units.Characters.Enums;
 
 namespace BossOfTheDungeons.States.InitCharacter;
@@ -60,13 +61,7 @@ public class InitCharacterState : State
 
         Character = new Character(charName, (CharacterClassEnum)selectedClass);
 
-        var item = selectedClass switch
-        {
-            CharacterClassEnum.Warrior => new Weapon("Палка", ItemTypeEnum.Weapon, WeaponItemTypeEnum.TwoHanded, 5),
-            CharacterClassEnum.Shadow => new Weapon("Кинжал", ItemTypeEnum.Weapon, WeaponItemTypeEnum.OneHanded, 2),
-            CharacterClassEnum.Mage => new Weapon("Жезл", ItemTypeEnum.Weapon, WeaponItemTypeEnum.OneHanded, 4),
-            _ => new Item("Тряпичные перчатки", ItemTypeEnum.Gloves, 1)
-        };
+        var item = GenerateItem.Generate();
 
         Character.TakeItem(item);
         End = true;

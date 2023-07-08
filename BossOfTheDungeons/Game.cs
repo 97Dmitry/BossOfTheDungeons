@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using BossOfTheDungeons.Items.Base;
 using BossOfTheDungeons.Items.Enums;
+using BossOfTheDungeons.Items.Generator;
 using BossOfTheDungeons.Shopping.Base;
 using BossOfTheDungeons.States.Base;
 using BossOfTheDungeons.States.InitCharacter;
@@ -19,13 +21,14 @@ public class Game
 
     public Game()
     {
+        var productRange = new Random().Next(1, 7);
+
+        var items = new Item[productRange];
+
+        for (var i = 0; i < productRange; i++) items[i] = GenerateItem.Generate();
+
         _states = new Stack<State>();
-        _shop = new Shop(new[]
-        {
-            new Item("Обычная кольчуга", ItemTypeEnum.Armor, 15),
-            new Item("Шлем", ItemTypeEnum.Helmet, 10),
-            new Weapon("Волшебная палка", ItemTypeEnum.Weapon, WeaponItemTypeEnum.OneHanded, 25)
-        });
+        _shop = new Shop(items);
     }
 
     public void Init()

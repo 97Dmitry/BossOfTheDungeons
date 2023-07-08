@@ -19,7 +19,7 @@ public class State
         return End;
     }
 
-    public void AddStack(State state)
+    protected void AddStack(State state)
     {
         Stacks.Push(state);
     }

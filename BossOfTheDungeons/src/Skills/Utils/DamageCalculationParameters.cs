@@ -9,6 +9,7 @@ public class DamageCalculationParameters
     public int ChaosDamage { get; set; }
     public int AttackSpeed { get; set; }
     public int CastSpeed { get; set; }
+    public int Accuracy { get; set; }
     public Strength Strength { get; set; }
     public Dexterity Dexterity { get; set; }
     public Intelligence Intelligence { get; set; }

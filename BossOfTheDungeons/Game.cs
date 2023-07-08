@@ -15,6 +15,8 @@ public class Game
     private Character _character;
     private readonly Shop _shop;
 
+    public static int Level = 1;
+
     public Game()
     {
         _states = new Stack<State>();

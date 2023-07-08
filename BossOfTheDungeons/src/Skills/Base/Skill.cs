@@ -1,5 +1,6 @@
 ﻿using BossOfTheDungeons.Skills.Enums;
 using BossOfTheDungeons.Skills.Utils;
+using BossOfTheDungeons.Units.Characters.Structs;
 
 namespace BossOfTheDungeons.Skills.Base;
 
@@ -18,24 +19,35 @@ public class Skill
         _type = skillType;
     }
 
-    public virtual int DamageCalculation(DamageCalculationParameters parameters)
+    public virtual float DamageCalculation(DamageCalculationParameters parameters)
     {
-        var damage = _damageType switch
+        var damage = 0f;
+        switch (_damageType)
         {
-            DamageType.PhysicalDamage => _damage + parameters.PhysicalDamage,
-            DamageType.MagicalDamage => _damage + parameters.MagicalDamage,
-            DamageType.ChaosDamage => _damage + parameters.ChaosDamage,
-            _ => _damage
-        };
+            case DamageType.PhysicalDamage:
+                damage = _damage + parameters.PhysicalDamage + parameters.Strength;
+                damage += parameters.Dexterity * parameters.Accuracy / 100.0f;
+                damage += parameters.Dexterity * parameters.AttackSpeed / 100.0f;
+                break;
+            case DamageType.MagicalDamage:
+                damage = parameters.MagicalDamage + parameters.Intelligence;
+                damage += parameters.CastSpeed * parameters.Intelligence / 50.0f;
+                break;
+            case DamageType.ChaosDamage:
+                damage = parameters.ChaosDamage + parameters.Intelligence / 2f;
+                damage += parameters.CastSpeed / 2f * parameters.Intelligence / 100.0f;
+                damage += parameters.AttackSpeed / 2f * parameters.Intelligence / 100.0f;
+                break;
+        }
 
         switch (_type)
         {
             case SkillType.Normal:
                 return damage;
             case SkillType.Rare:
-                return (int)(damage + damage * 0.5);
+                return damage + damage * 0.5f;
             case SkillType.Legendary:
-                return damage * 2;
+                return damage * 2f;
             default:
                 return damage;
         }

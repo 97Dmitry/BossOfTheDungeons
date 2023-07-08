@@ -43,6 +43,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Dungeons\Base\Dungeon.cs" />
     <Compile Include="src\GUI\Gui.cs" />
     <Compile Include="src\GUI\Selector.cs" />
     <Compile Include="src\Items\Base\Item.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="src\Units\Enemies\Rare\BloodViper\BloodViper.cs" />
     <Compile Include="src\Units\Enemies\Rare\FireChimera\FireChimera.cs" />
     <Compile Include="src\Units\Enemies\Rare\Ursa\Ursa.cs" />
+    <Compile Include="src\Units\Interfaces\IUnit.cs" />
     <Compile Include="src\Utils\ArmorCalculation.cs" />
     <Compile Include="src\Utils\DamageCalculation.cs" />
     <Compile Include="src\Utils\ListExtensions.cs" />

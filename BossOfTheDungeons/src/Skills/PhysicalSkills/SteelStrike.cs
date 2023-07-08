@@ -11,8 +11,8 @@ public class SteelStrike : Skill
     {
     }
 
-    public override int DamageCalculation(DamageCalculationParameters parameters)
+    public override float DamageCalculation(DamageCalculationParameters parameters)
     {
-        return base.DamageCalculation(parameters) * parameters.AttackSpeed + parameters.Strength;
+        return base.DamageCalculation(parameters);
     }
 }

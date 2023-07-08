@@ -7,12 +7,12 @@ namespace BossOfTheDungeons.Skills.MagicalSkills;
 
 public class FireBall : Skill
 {
-    public FireBall() : base("Огненный шар", 5, DamageType.MagicalDamage, SkillType.Normal)
+    public FireBall() : base("Огненный шар", 15, DamageType.MagicalDamage, SkillType.Normal)
     {
     }
 
-    public override int DamageCalculation(DamageCalculationParameters parameters)
+    public override float DamageCalculation(DamageCalculationParameters parameters)
     {
-        return base.DamageCalculation(parameters) * parameters.CastSpeed + parameters.Intelligence;
+        return base.DamageCalculation(parameters);
     }
 }

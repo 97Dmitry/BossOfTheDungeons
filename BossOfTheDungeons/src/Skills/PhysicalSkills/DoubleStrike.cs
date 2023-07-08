@@ -11,8 +11,8 @@ public class DoubleStrike : Skill
     {
     }
 
-    public override int DamageCalculation(DamageCalculationParameters parameters)
+    public override float DamageCalculation(DamageCalculationParameters parameters)
     {
-        return base.DamageCalculation(parameters) * parameters.AttackSpeed + parameters.Dexterity;
+        return base.DamageCalculation(parameters);
     }
 }

@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using BossOfTheDungeons.Items.Base;
 using BossOfTheDungeons.Items.Enums;
 using BossOfTheDungeons.Skills.Base;
+using BossOfTheDungeons.Skills.Enums;
 using BossOfTheDungeons.Skills.MagicalSkills;
 using BossOfTheDungeons.Skills.PhysicalSkills;
 using BossOfTheDungeons.Skills.Utils;
 using BossOfTheDungeons.Units.Characters.Enums;
 using BossOfTheDungeons.Units.Characters.Structs;
+using BossOfTheDungeons.Units.Interfaces;
 
 namespace BossOfTheDungeons.Units.Characters.Base;
 
-public class Character
+public class Character : IUnit
 {
     // Base
     private readonly string _name;
@@ -27,7 +29,8 @@ public class Character
     private readonly Bag _bag;
 
     // Combat
-    private int _health, _fullHealth;
+    private float _health;
+    private int _fullHealth;
     private int _physicalDamage;
     private int _magicalDamage;
     private int _chaosDamage;
@@ -50,8 +53,8 @@ public class Character
                 _dexterity = 4;
                 _intelligence = 1;
 
-                _health = 100;
-                _fullHealth = 100;
+                _health = 100f;
+                _fullHealth = (int)_health;
                 _physicalDamage = 10;
                 _magicalDamage = 0;
                 _chaosDamage = 0;
@@ -69,13 +72,13 @@ public class Character
                 _dexterity = 10;
                 _intelligence = 2;
 
-                _health = 75;
-                _fullHealth = 75;
+                _health = 75f;
+                _fullHealth = (int)_health;
                 _physicalDamage = 6;
                 _magicalDamage = 1;
                 _chaosDamage = 2;
                 _armor = 4;
-                _attackSpeed = 2;
+                _attackSpeed = 3;
                 _castSpeed = 1;
                 _elementalResistance = 1;
                 _chaosResistance = 2;
@@ -88,15 +91,15 @@ public class Character
                 _dexterity = 2;
                 _intelligence = 12;
 
-                _health = 50;
-                _fullHealth = 75;
-                _physicalDamage = 6;
-                _magicalDamage = 1;
+                _health = 50f;
+                _fullHealth = (int)_health;
+                _physicalDamage = 1;
+                _magicalDamage = 8;
                 _chaosDamage = 1;
-                _armor = 1;
-                _attackSpeed = 2;
-                _castSpeed = 1;
-                _elementalResistance = 2;
+                _armor = 2;
+                _attackSpeed = 1;
+                _castSpeed = 6;
+                _elementalResistance = 3;
                 _chaosResistance = 2;
                 _accuracy = 1;
 
@@ -124,6 +127,7 @@ public class Character
                 ChaosDamage = _chaosDamage,
                 AttackSpeed = _attackSpeed,
                 CastSpeed = _castSpeed,
+                Accuracy = _accuracy,
                 Strength = _strength,
                 Dexterity = _dexterity,
                 Intelligence = _intelligence
@@ -133,6 +137,7 @@ public class Character
         Console.WriteLine("Данные о вашем персонаже:");
         Console.WriteLine($"Имя: {_name}");
         Console.WriteLine($"Класс: {_class}\n");
+        Console.WriteLine($"Здоровье: {_fullHealth}");
         Console.WriteLine($"Выбранная способность: {_skill.Name}");
         Console.WriteLine($"Урон: {damage}");
     }
@@ -175,5 +180,28 @@ public class Character
         _bag.SpendMoney(money);
         TakeItem(item);
         return money;
+    }
+
+    public float CalculateDefense(DamageType damageType, int damage)
+    {
+        var defense = 0f;
+        switch (damageType)
+        {
+            case DamageType.PhysicalDamage:
+                defense = _armor + _strength;
+                defense += _dexterity * _armor / 100.0f;
+                break;
+            case DamageType.MagicalDamage:
+                defense = _elementalResistance + _intelligence;
+                defense += _intelligence * _elementalResistance / 100.0f;
+                break;
+            case DamageType.ChaosDamage:
+                defense = _chaosResistance + _intelligence / 2f;
+                break;
+        }
+
+        var finalDamage = Math.Max(0, damage - defense);
+        _health -= finalDamage;
+        return finalDamage;
     }
 }

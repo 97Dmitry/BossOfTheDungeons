@@ -9,6 +9,7 @@ public class Inventory
     private Item? _helmet;
     private Item? _gloves;
     private Item? _boots;
+    private Item? _armor;
     private Item? _belt;
     private Item? _ring1;
     private Item? _ring2;
@@ -26,24 +27,27 @@ public class Inventory
 
         var boots = _boots != null ? $"{_boots.Name}" : "отсутствует";
         Console.WriteLine($"3. Ботинки {boots}");
+        
+        var armor = _armor != null ? $"{_armor.Name}" : "отсутствует";
+        Console.WriteLine($"4. Броня {armor}");
 
         var belt = _belt != null ? $"{_belt.Name}" : "отсутствует";
-        Console.WriteLine($"4. Пояс {belt}");
+        Console.WriteLine($"5. Пояс {belt}");
 
         var ring1 = _ring1 != null ? $"{_ring1.Name}" : "отсутствует";
-        Console.WriteLine($"5. Кольцо 1 {ring1}");
+        Console.WriteLine($"6. Кольцо 1 {ring1}");
 
         var ring2 = _ring2 != null ? $"{_ring2.Name}" : "отсутствует";
-        Console.WriteLine($"6. Кольцо 2 {ring2}");
+        Console.WriteLine($"7. Кольцо 2 {ring2}");
 
         var amulet = _amulet != null ? $"{_amulet.Name}" : "отсутствует";
-        Console.WriteLine($"7. Амулет {amulet}");
+        Console.WriteLine($"8. Амулет {amulet}");
 
         var weapon1 = _weapon1 != null ? $"{_weapon1.Name}" : "отсутствует";
-        Console.WriteLine($"8. Оружие 1 {weapon1}");
+        Console.WriteLine($"9. Оружие 1 {weapon1}");
 
         var weapon2 = _weapon2 != null ? $"{_weapon2.Name}" : "отсутствует";
-        Console.WriteLine($"9. Оружие 2 {weapon2}");
+        Console.WriteLine($"0. Оружие 2 {weapon2}");
     }
 
     public void SetItem(Item item, Bag bag, int? slot = 1)
@@ -63,6 +67,11 @@ public class Inventory
             case ItemTypeEnum.Boots:
                 if (_boots != null) bag.SetItem(_boots);
                 _boots = item;
+                bag.DeleteItem(item);
+                break;
+            case ItemTypeEnum.Armor:
+                if (_armor != null) bag.SetItem(_armor);
+                _armor = item;
                 bag.DeleteItem(item);
                 break;
             case ItemTypeEnum.Belt:

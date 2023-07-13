@@ -1,11 +1,11 @@
-﻿using BossOfTheDungeons.States.Base;
-using BossOfTheDungeons.Units.Characters.Base;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using System.Linq;
 using BossOfTheDungeons.GUI;
 using BossOfTheDungeons.Items.Base;
 using BossOfTheDungeons.Items.Enums;
-using System.Linq;
+using BossOfTheDungeons.States.Base;
+using BossOfTheDungeons.Units.Characters.Base;
 
 namespace BossOfTheDungeons.States.Inventory;
 
@@ -99,36 +99,42 @@ public class InventoryState : State
 
                     break;
                 case ConsoleKey.D4:
+                    var armor = _character.GetBagItemsByType(ItemTypeEnum.Armor);
+                    base.Update();
+                    ShowItems(armor);
+
+                    break;
+                case ConsoleKey.D5:
                     var belts = _character.GetBagItemsByType(ItemTypeEnum.Belt);
                     base.Update();
                     ShowItems(belts);
 
                     break;
-                case ConsoleKey.D5:
+                case ConsoleKey.D6:
                     var rings1 = _character.GetBagItemsByType(ItemTypeEnum.Ring);
                     base.Update();
                     ShowItems(rings1);
 
                     break;
-                case ConsoleKey.D6:
+                case ConsoleKey.D7:
                     var rings2 = _character.GetBagItemsByType(ItemTypeEnum.Ring);
                     base.Update();
                     ShowItems(rings2, 2);
 
                     break;
-                case ConsoleKey.D7:
+                case ConsoleKey.D8:
                     var amulets = _character.GetBagItemsByType(ItemTypeEnum.Amulet);
                     base.Update();
                     ShowItems(amulets);
 
                     break;
-                case ConsoleKey.D8:
+                case ConsoleKey.D9:
                     var weapons1 = _character.GetBagItemsByType(ItemTypeEnum.Weapon);
                     base.Update();
                     ShowItems(weapons1);
 
                     break;
-                case ConsoleKey.D9:
+                case ConsoleKey.D0:
                     var weapons2 = _character.GetBagItemsByType(ItemTypeEnum.Weapon);
                     base.Update();
                     ShowItems(weapons2, 2);

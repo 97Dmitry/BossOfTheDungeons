@@ -7,32 +7,32 @@ namespace BossOfTheDungeons.Items.Generator;
 
 public static class GenerateItem
 {
-    private static readonly Random random = new();
+    private static readonly Random Random = new();
 
     public static Item Generate()
     {
         var itemTypes = Enum.GetValues(typeof(ItemTypeEnum));
-        var itemType = (ItemTypeEnum)itemTypes.GetValue(random.Next(itemTypes.Length));
+        var itemType = (ItemTypeEnum)itemTypes.GetValue(Random.Next(itemTypes.Length));
 
         var itemPropertyTypes = Enum.GetValues(typeof(ItemPropertyType));
         var itemPropertyType =
-            (ItemPropertyType)itemPropertyTypes.GetValue(random.Next(itemPropertyTypes.Length));
+            (ItemPropertyType)itemPropertyTypes.GetValue(Random.Next(itemPropertyTypes.Length));
 
         var itemRare = GenerateItemRare.GetRandomItemRate();
 
         var itemPrice = itemRare switch
         {
-            ItemRate.Common => random.Next(1, 26),
-            ItemRate.Magical => random.Next(25, 76),
-            ItemRate.Rare => random.Next(75, 181),
-            ItemRate.Legendary => random.Next(300, 751),
+            ItemRate.Common => Random.Next(1, 26),
+            ItemRate.Magical => Random.Next(25, 76),
+            ItemRate.Rare => Random.Next(75, 181),
+            ItemRate.Legendary => Random.Next(300, 751),
             _ => 1
         };
 
         if (itemType == ItemTypeEnum.Weapon)
         {
             var weaponTypes = Enum.GetValues(typeof(WeaponItemTypeEnum));
-            var weaponType = (WeaponItemTypeEnum)weaponTypes.GetValue(random.Next(weaponTypes.Length));
+            var weaponType = (WeaponItemTypeEnum)weaponTypes.GetValue(Random.Next(weaponTypes.Length));
 
             int physicalDamage;
             int magicalDamage;
@@ -44,28 +44,28 @@ public static class GenerateItem
             switch (itemPropertyType)
             {
                 case ItemPropertyType.Strength:
-                    physicalDamage = random.Next(1, 9);
-                    magicalDamage = random.Next(1, 3);
-                    chaosDamage = random.Next(1, 3);
-                    attackSpeed = random.Next(1, 6);
-                    castSpeed = random.Next(1, 3);
-                    accuracy = random.Next(1, 5);
+                    physicalDamage = Random.Next(1, 9);
+                    magicalDamage = Random.Next(1, 3);
+                    chaosDamage = Random.Next(1, 3);
+                    attackSpeed = Random.Next(1, 6);
+                    castSpeed = Random.Next(1, 3);
+                    accuracy = Random.Next(1, 5);
                     break;
                 case ItemPropertyType.Dexterity:
-                    physicalDamage = random.Next(1, 7);
-                    magicalDamage = random.Next(1, 3);
-                    chaosDamage = random.Next(1, 11);
-                    attackSpeed = random.Next(1, 9);
-                    castSpeed = random.Next(1, 3);
-                    accuracy = random.Next(1, 11);
+                    physicalDamage = Random.Next(1, 7);
+                    magicalDamage = Random.Next(1, 3);
+                    chaosDamage = Random.Next(1, 11);
+                    attackSpeed = Random.Next(1, 9);
+                    castSpeed = Random.Next(1, 3);
+                    accuracy = Random.Next(1, 11);
                     break;
                 case ItemPropertyType.Intelligence:
-                    physicalDamage = random.Next(1, 3);
-                    magicalDamage = random.Next(1, 16);
-                    chaosDamage = random.Next(1, 7);
-                    attackSpeed = random.Next(1, 5);
-                    castSpeed = random.Next(1, 11);
-                    accuracy = random.Next(1, 4);
+                    physicalDamage = Random.Next(1, 3);
+                    magicalDamage = Random.Next(1, 16);
+                    chaosDamage = Random.Next(1, 7);
+                    attackSpeed = Random.Next(1, 5);
+                    castSpeed = Random.Next(1, 11);
+                    accuracy = Random.Next(1, 4);
                     break;
                 default:
                     throw new InvalidOperationException("Invalid ItemPropertyType enum value");
@@ -97,31 +97,31 @@ public static class GenerateItem
         switch (itemPropertyType)
         {
             case ItemPropertyType.Strength:
-                armor = random.Next(1, 11);
-                strength = new Strength(random.Next(1, 19));
-                dexterity = new Dexterity(random.Next(1, 5));
-                intelligence = new Intelligence(random.Next(1, 3));
-                health = random.Next(1, 23);
-                elementalResistance = random.Next(1, 9);
-                chaosResistance = random.Next(1, 5);
+                armor = Random.Next(1, 11);
+                strength = new Strength(Random.Next(1, 19));
+                dexterity = new Dexterity(Random.Next(1, 5));
+                intelligence = new Intelligence(Random.Next(1, 3));
+                health = Random.Next(1, 23);
+                elementalResistance = Random.Next(1, 9);
+                chaosResistance = Random.Next(1, 5);
                 break;
             case ItemPropertyType.Dexterity:
-                armor = random.Next(1, 7);
-                strength = new Strength(random.Next(1, 9));
-                dexterity = new Dexterity(random.Next(1, 19));
-                intelligence = new Intelligence(random.Next(1, 5));
-                health = random.Next(1, 16);
-                elementalResistance = random.Next(1, 13);
-                chaosResistance = random.Next(1, 9);
+                armor = Random.Next(1, 7);
+                strength = new Strength(Random.Next(1, 9));
+                dexterity = new Dexterity(Random.Next(1, 19));
+                intelligence = new Intelligence(Random.Next(1, 5));
+                health = Random.Next(1, 16);
+                elementalResistance = Random.Next(1, 13);
+                chaosResistance = Random.Next(1, 9);
                 break;
             case ItemPropertyType.Intelligence:
-                armor = random.Next(1, 5);
-                strength = new Strength(random.Next(1, 7));
-                dexterity = new Dexterity(random.Next(1, 5));
-                intelligence = new Intelligence(random.Next(1, 23));
-                health = random.Next(1, 11);
-                elementalResistance = random.Next(1, 21);
-                chaosResistance = random.Next(1, 13);
+                armor = Random.Next(1, 5);
+                strength = new Strength(Random.Next(1, 7));
+                dexterity = new Dexterity(Random.Next(1, 5));
+                intelligence = new Intelligence(Random.Next(1, 23));
+                health = Random.Next(1, 11);
+                elementalResistance = Random.Next(1, 21);
+                chaosResistance = Random.Next(1, 13);
                 break;
             default:
                 throw new InvalidOperationException("Invalid ItemPropertyType enum value");
@@ -195,7 +195,7 @@ public static class GenerateItem
                         new[] { "Посох", "0" },
                         new[] { "Лук", "0" }
                     };
-                    var index = random.Next(weaponNouns.Length);
+                    var index = Random.Next(weaponNouns.Length);
                     noun = weaponNouns[index][0];
                     gender = int.Parse(weaponNouns[index][1]);
                     break;
@@ -203,7 +203,7 @@ public static class GenerateItem
                     throw new InvalidOperationException("Invalid ItemTypeEnum enum value");
             }
 
-            var adjective = adjectives[random.Next(adjectives.Length)][gender];
+            var adjective = adjectives[Random.Next(adjectives.Length)][gender];
 
             return $"{adjective} {noun}";
         }

@@ -20,13 +20,13 @@ public class Character : IUnit
 
     // Character info
     private readonly CharacterClassEnum? _class;
-    private Strength _strength;
-    private Dexterity _dexterity;
-    private Intelligence _intelligence;
 
     // Common
     private readonly Inventory _inventory;
     private readonly Bag _bag;
+    private Strength _strength;
+    private Dexterity _dexterity;
+    private Intelligence _intelligence;
 
     // Combat
     private float _health;
@@ -43,6 +43,15 @@ public class Character : IUnit
 
     // Skills
     private Skill _skill;
+
+    public Character(string name, CharacterClassEnum characterClass)
+    {
+        _name = name;
+        _class = characterClass;
+        _inventory = new Inventory();
+        _bag = new Bag();
+        CalculateCharacterAttributes(characterClass);
+    }
 
     private void CalculateCharacterAttributes(CharacterClassEnum characterClass)
     {
@@ -106,15 +115,6 @@ public class Character : IUnit
                 _skill = new FireBall();
                 break;
         }
-    }
-
-    public Character(string name, CharacterClassEnum characterClass)
-    {
-        _name = name;
-        _class = characterClass;
-        _inventory = new Inventory();
-        _bag = new Bag();
-        CalculateCharacterAttributes(characterClass);
     }
 
     public void CharacterInfo()

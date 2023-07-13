@@ -1,23 +1,21 @@
-﻿using BossOfTheDungeons.States.Base;
-using BossOfTheDungeons.Units.Characters.Base;
+﻿using System;
 using System.Collections.Generic;
-using System;
 using BossOfTheDungeons.GUI;
-using BossOfTheDungeons.Items.Base;
-using BossOfTheDungeons.Items.Enums;
-using BossOfTheDungeons.Items.Generator;
+using BossOfTheDungeons.Items.Utils.Generator;
+using BossOfTheDungeons.States.Base;
+using BossOfTheDungeons.Units.Characters.Base;
 using BossOfTheDungeons.Units.Characters.Enums;
 
 namespace BossOfTheDungeons.States.InitCharacter;
 
 public class InitCharacterState : State
 {
-    public Character Character { get; private set; }
-
     public InitCharacterState(Stack<State> states)
         : base(states)
     {
     }
+
+    public Character Character { get; private set; }
 
     public override void Update()
     {
@@ -61,7 +59,7 @@ public class InitCharacterState : State
 
         Character = new Character(charName, (CharacterClassEnum)selectedClass);
 
-        var item = GenerateItem.Generate();
+        var item = ItemGenerator.Generate();
 
         Character.TakeItem(item);
         End = true;

@@ -27,7 +27,7 @@ public class Inventory
 
         var boots = _boots != null ? $"{_boots.Name}" : "отсутствует";
         Console.WriteLine($"3. Ботинки {boots}");
-        
+
         var armor = _armor != null ? $"{_armor.Name}" : "отсутствует";
         Console.WriteLine($"4. Броня {armor}");
 

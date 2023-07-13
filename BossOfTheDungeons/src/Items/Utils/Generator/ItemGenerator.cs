@@ -3,9 +3,9 @@ using BossOfTheDungeons.Items.Base;
 using BossOfTheDungeons.Items.Enums;
 using BossOfTheDungeons.Units.Characters.Structs;
 
-namespace BossOfTheDungeons.Items.Generator;
+namespace BossOfTheDungeons.Items.Utils.Generator;
 
-public static class GenerateItem
+public static class ItemGenerator
 {
     private static readonly Random Random = new();
 
@@ -18,7 +18,7 @@ public static class GenerateItem
         var itemPropertyType =
             (ItemPropertyType)itemPropertyTypes.GetValue(Random.Next(itemPropertyTypes.Length));
 
-        var itemRare = GenerateItemRare.GetRandomItemRate();
+        var itemRare = ItemRareGenerator.GetRandomItemRate();
 
         var itemPrice = itemRare switch
         {

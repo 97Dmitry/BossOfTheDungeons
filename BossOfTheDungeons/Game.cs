@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 using BossOfTheDungeons.Items.Base;
-using BossOfTheDungeons.Items.Enums;
-using BossOfTheDungeons.Items.Generator;
+using BossOfTheDungeons.Items.Utils.Generator;
 using BossOfTheDungeons.Shopping.Base;
 using BossOfTheDungeons.States.Base;
 using BossOfTheDungeons.States.InitCharacter;
@@ -13,11 +12,10 @@ namespace BossOfTheDungeons;
 
 public class Game
 {
-    private readonly Stack<State> _states;
-    private Character _character;
-    private readonly Shop _shop;
-
     public static int Level = 1;
+    private readonly Stack<State> _states;
+    private readonly Shop _shop;
+    private Character _character;
 
     public Game()
     {
@@ -25,7 +23,7 @@ public class Game
 
         var items = new Item[productRange];
 
-        for (var i = 0; i < productRange; i++) items[i] = GenerateItem.Generate();
+        for (var i = 0; i < productRange; i++) items[i] = ItemGenerator.Generate();
 
         _states = new Stack<State>();
         _shop = new Shop(items);

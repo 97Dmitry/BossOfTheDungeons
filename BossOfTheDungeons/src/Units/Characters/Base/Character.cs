@@ -17,7 +17,7 @@ namespace BossOfTheDungeons.Units.Characters.Base;
 public class Character : Unit
 {
     // Base
-    private readonly string _name;
+    public readonly string Name;
 
     // Character info
     private readonly CharacterClassEnum? _class;
@@ -30,8 +30,8 @@ public class Character : Unit
     private Intelligence _intelligence;
 
     // Combat
-    private float _health;
-    private int _fullHealth;
+    public float Health { get; private set; }
+    public int FullHealth { get; private set; }
     private int _physicalDamage;
     private int _magicalDamage;
     private int _chaosDamage;
@@ -47,7 +47,7 @@ public class Character : Unit
 
     public Character(string name, CharacterClassEnum characterClass)
     {
-        _name = name;
+        Name = name;
         _class = characterClass;
         _inventory = new Inventory();
         _bag = new Bag();
@@ -63,8 +63,8 @@ public class Character : Unit
                 _dexterity = 4;
                 _intelligence = 1;
 
-                _health = 100f;
-                _fullHealth = (int)_health;
+                Health = 100f;
+                FullHealth = (int)Health;
                 _physicalDamage = 10;
                 _magicalDamage = 0;
                 _chaosDamage = 0;
@@ -82,8 +82,8 @@ public class Character : Unit
                 _dexterity = 10;
                 _intelligence = 2;
 
-                _health = 75f;
-                _fullHealth = (int)_health;
+                Health = 75f;
+                FullHealth = (int)Health;
                 _physicalDamage = 6;
                 _magicalDamage = 1;
                 _chaosDamage = 2;
@@ -101,8 +101,8 @@ public class Character : Unit
                 _dexterity = 2;
                 _intelligence = 12;
 
-                _health = 50f;
-                _fullHealth = (int)_health;
+                Health = 50f;
+                FullHealth = (int)Health;
                 _physicalDamage = 1;
                 _magicalDamage = 8;
                 _chaosDamage = 1;
@@ -123,9 +123,9 @@ public class Character : Unit
         var damage = _skill.DamageCalculation(GetDamageCalculationParameters());
 
         Console.WriteLine("Данные о вашем персонаже:");
-        Console.WriteLine($"Имя: {_name}");
+        Console.WriteLine($"Имя: {Name}");
         Console.WriteLine($"Класс: {_class}\n");
-        Console.WriteLine($"Здоровье: {_fullHealth}");
+        Console.WriteLine($"Здоровье: {FullHealth}");
         Console.WriteLine($"Выбранная способность: {_skill.Name}");
         Console.WriteLine($"Урон: {damage}");
     }
@@ -191,7 +191,7 @@ public class Character : Unit
         }
 
         var finalDamage = Math.Max(0, damage.DamageValue - defense);
-        _health -= finalDamage;
+        Health -= finalDamage;
     }
 
     public override void Attack(Unit unit)

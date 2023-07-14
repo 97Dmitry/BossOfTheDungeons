@@ -1,7 +1,7 @@
-﻿using BossOfTheDungeons.Skills.Base;
+﻿using BossOfTheDungeons.Common.Structs;
+using BossOfTheDungeons.Skills.Base;
 using BossOfTheDungeons.Skills.Enums;
 using BossOfTheDungeons.Skills.Utils;
-using BossOfTheDungeons.Units.Characters.Structs;
 
 namespace BossOfTheDungeons.Skills.PhysicalSkills;
 
@@ -11,7 +11,7 @@ public class DoubleStrike : Skill
     {
     }
 
-    public override float DamageCalculation(DamageCalculationParameters parameters)
+    public override Damage DamageCalculation(DamageCalculationParameters parameters)
     {
         return base.DamageCalculation(parameters);
     }

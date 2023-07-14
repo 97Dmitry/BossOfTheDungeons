@@ -12,10 +12,12 @@ namespace BossOfTheDungeons.Units.Enemies.Base;
 
 public class Enemy : Unit
 {
+    private static readonly Random Random = new();
+
     public readonly string Name;
 
-    private float _health;
-    private int _fullHealth;
+    public float Health { get; private set; }
+    public int FullHealth { get; private set; }
     private readonly int _armor;
     private readonly int _magicalDamage;
     private readonly int _physicalDamage;
@@ -36,31 +38,29 @@ public class Enemy : Unit
 
     public Enemy(int level)
     {
-        var random = new Random();
-
         Name = EnemyNameGenerator.GenerateEnemyName();
 
-        _strength = random.Next(1, 5 + level);
-        _dexterity = random.Next(1, 5 + level);
-        _intelligence = random.Next(1, 5 + level);
+        _strength = Random.Next(1, 5 + level);
+        _dexterity = Random.Next(1, 5 + level);
+        _intelligence = Random.Next(1, 5 + level);
 
-        _health = random.Next(1, 51) + random.Next(1, 5 * level);
-        _fullHealth = (int)_health;
-        _armor = random.Next(1, 5 + level);
-        _magicalDamage = random.Next(1, 5 + level);
-        _physicalDamage = random.Next(1, 5 + level);
-        _chaosDamage = random.Next(1, 5 + level);
-        _attackSpeed = random.Next(1, 5 + level);
-        _castSpeed = random.Next(1, 5 + level);
-        _chaosResistance = random.Next(1, 5 + level);
-        _elementalResistance = random.Next(1, 5 + level);
-        _accuracy = random.Next(1, 6 + level);
+        Health = Random.Next(1, 51) + Random.Next(1, 5 * level);
+        FullHealth = (int)Health;
+        _armor = Random.Next(1, 5 + level);
+        _magicalDamage = Random.Next(1, 5 + level);
+        _physicalDamage = Random.Next(1, 5 + level);
+        _chaosDamage = Random.Next(1, 5 + level);
+        _attackSpeed = Random.Next(1, 5 + level);
+        _castSpeed = Random.Next(1, 5 + level);
+        _chaosResistance = Random.Next(1, 5 + level);
+        _elementalResistance = Random.Next(1, 5 + level);
+        _accuracy = Random.Next(1, 6 + level);
 
         var damageTypes = Enum.GetValues(typeof(DamageType));
-        var damageType = (DamageType)damageTypes.GetValue(random.Next(damageTypes.Length));
+        var damageType = (DamageType)damageTypes.GetValue(Random.Next(damageTypes.Length));
 
         _damageType = damageType;
-        _skill = new DefaultAttack(random.Next(1, 5 + level));
+        _skill = new DefaultAttack(Random.Next(1, 5 + level));
     }
 
     public override void Attack(Unit unit)
@@ -88,7 +88,7 @@ public class Enemy : Unit
         }
 
         var finalDamage = Math.Max(0, damage.DamageValue - defense);
-        _health -= finalDamage;
+        Health -= finalDamage;
     }
 
     private DamageCalculationParameters GetDamageCalculationParameters()

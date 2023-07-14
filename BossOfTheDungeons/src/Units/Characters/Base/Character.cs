@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BossOfTheDungeons.Common.Structs;
 using BossOfTheDungeons.Items.Base;
 using BossOfTheDungeons.Items.Enums;
 using BossOfTheDungeons.Skills.Base;
@@ -9,11 +10,11 @@ using BossOfTheDungeons.Skills.PhysicalSkills;
 using BossOfTheDungeons.Skills.Utils;
 using BossOfTheDungeons.Units.Characters.Enums;
 using BossOfTheDungeons.Units.Characters.Structs;
-using BossOfTheDungeons.Units.Interfaces;
+using BossOfTheDungeons.Units.Common;
 
 namespace BossOfTheDungeons.Units.Characters.Base;
 
-public class Character : IUnit
+public class Character : Unit
 {
     // Base
     private readonly string _name;
@@ -119,20 +120,7 @@ public class Character : IUnit
 
     public void CharacterInfo()
     {
-        var damage = _skill.DamageCalculation(
-            new DamageCalculationParameters
-            {
-                PhysicalDamage = _physicalDamage,
-                MagicalDamage = _magicalDamage,
-                ChaosDamage = _chaosDamage,
-                AttackSpeed = _attackSpeed,
-                CastSpeed = _castSpeed,
-                Accuracy = _accuracy,
-                Strength = _strength,
-                Dexterity = _dexterity,
-                Intelligence = _intelligence
-            }
-        );
+        var damage = _skill.DamageCalculation(GetDamageCalculationParameters());
 
         Console.WriteLine("Данные о вашем персонаже:");
         Console.WriteLine($"Имя: {_name}");
@@ -182,10 +170,10 @@ public class Character : IUnit
         return money;
     }
 
-    public float CalculateDefense(DamageType damageType, int damage)
+    public override void TakeDamage(Damage damage)
     {
         var defense = 0f;
-        switch (damageType)
+        switch (damage.DamageType)
         {
             case DamageType.PhysicalDamage:
                 defense = _armor + _strength;
@@ -198,10 +186,33 @@ public class Character : IUnit
             case DamageType.ChaosDamage:
                 defense = _chaosResistance + _intelligence / 2f;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
-        var finalDamage = Math.Max(0, damage - defense);
+        var finalDamage = Math.Max(0, damage.DamageValue - defense);
         _health -= finalDamage;
-        return finalDamage;
+    }
+
+    public override void Attack(Unit unit)
+    {
+        var damage = _skill.DamageCalculation(GetDamageCalculationParameters());
+        unit.TakeDamage(damage);
+    }
+
+    private DamageCalculationParameters GetDamageCalculationParameters()
+    {
+        return new DamageCalculationParameters
+        {
+            PhysicalDamage = _physicalDamage,
+            MagicalDamage = _magicalDamage,
+            ChaosDamage = _chaosDamage,
+            AttackSpeed = _attackSpeed,
+            CastSpeed = _castSpeed,
+            Accuracy = _accuracy,
+            Strength = _strength,
+            Dexterity = _dexterity,
+            Intelligence = _intelligence
+        };
     }
 }

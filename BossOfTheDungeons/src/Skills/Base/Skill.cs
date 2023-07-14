@@ -1,6 +1,7 @@
-﻿using BossOfTheDungeons.Skills.Enums;
+﻿using System;
+using BossOfTheDungeons.Common.Structs;
+using BossOfTheDungeons.Skills.Enums;
 using BossOfTheDungeons.Skills.Utils;
-using BossOfTheDungeons.Units.Characters.Structs;
 
 namespace BossOfTheDungeons.Skills.Base;
 
@@ -19,7 +20,7 @@ public class Skill
         _type = skillType;
     }
 
-    public virtual float DamageCalculation(DamageCalculationParameters parameters)
+    public virtual Damage DamageCalculation(DamageCalculationParameters parameters)
     {
         var damage = 0f;
         switch (_damageType)
@@ -38,20 +39,24 @@ public class Skill
                 damage += parameters.CastSpeed / 2f * parameters.Intelligence / 100.0f;
                 damage += parameters.AttackSpeed / 2f * parameters.Intelligence / 100.0f;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         switch (_type)
         {
             case SkillType.Normal:
-                return damage;
+                break;
             case SkillType.Rare:
-                return damage + damage * 0.5f;
+                damage += damage * 0.5f;
+                break;
             case SkillType.Legendary:
-                return damage * 2f;
+                damage *= 2f;
+                break;
             default:
-                return damage;
+                throw new ArgumentOutOfRangeException();
         }
 
-        ;
+        return new Damage(damage, _damageType);
     }
 }

@@ -3,11 +3,11 @@ using BossOfTheDungeons.Skills.Base;
 using BossOfTheDungeons.Skills.Enums;
 using BossOfTheDungeons.Skills.Utils;
 
-namespace BossOfTheDungeons.Skills.MagicalSkills;
+namespace BossOfTheDungeons.Skills.EnemySkills;
 
-public class FireBall : Skill
+public class DefaultAttack : Skill
 {
-    public FireBall() : base("Огненный шар", 15, DamageType.MagicalDamage, SkillType.Normal)
+    public DefaultAttack(int damage) : base("Обычная атака", damage, DamageType.PhysicalDamage, SkillType.Normal)
     {
     }
 

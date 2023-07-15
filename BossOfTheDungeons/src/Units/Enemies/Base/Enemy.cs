@@ -63,13 +63,20 @@ public class Enemy : Unit
         _skill = new DefaultAttack(Random.Next(1, 5 + level));
     }
 
-    public override void Attack(Unit unit)
+    public override DamageInfo Attack(Unit unit)
     {
         var damage = _skill.DamageCalculation(GetDamageCalculationParameters());
-        unit.TakeDamage(damage);
+        var damageReceived = unit.TakeDamage(damage);
+
+
+        return new DamageInfo
+        {
+            PotentialDamage = damage.DamageValue,
+            FinalDamage = damageReceived
+        };
     }
 
-    public override void TakeDamage(Damage damage)
+    public override float TakeDamage(Damage damage)
     {
         var defense = 0f;
         switch (damage.DamageType)
@@ -89,6 +96,8 @@ public class Enemy : Unit
 
         var finalDamage = Math.Max(0, damage.DamageValue - defense);
         Health -= finalDamage;
+
+        return finalDamage;
     }
 
     private DamageCalculationParameters GetDamageCalculationParameters()

@@ -28,7 +28,7 @@ public static class Gui
 
             var output = value1.PadRight(column1[i].Length + columnSpacing + (maxColumnLength - column1[i].Length)) +
                          value2;
-            WriteLine(output);
+            WriteLine($"{i + 1}. {output}");
         }
     }
 }

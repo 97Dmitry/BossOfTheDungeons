@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using BossOfTheDungeons.Dungeons.Structs;
+using BossOfTheDungeons.Items.Base;
 using BossOfTheDungeons.Units.Enemies.Base;
 using BossOfTheDungeons.Utils;
 
@@ -46,5 +49,16 @@ public class Dungeon
             }
 
         return deadEnemies;
+    }
+
+    public DungeonLoot Win()
+    {
+        Level++;
+        GenerateEnemies();
+        return new DungeonLoot
+        {
+            Money = 1 + Level,
+            Items = Array.Empty<Item>()
+        };
     }
 }

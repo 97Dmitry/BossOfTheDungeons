@@ -127,7 +127,7 @@ public class Character : Unit
         Console.WriteLine($"Класс: {_class}\n");
         Console.WriteLine($"Здоровье: {FullHealth}");
         Console.WriteLine($"Выбранная способность: {_skill.Name}");
-        Console.WriteLine($"Урон: {damage}");
+        Console.WriteLine($"Урон: {damage.DamageValue}");
     }
 
     public void MyBag()
@@ -170,7 +170,7 @@ public class Character : Unit
         return money;
     }
 
-    public override void TakeDamage(Damage damage)
+    public override float TakeDamage(Damage damage)
     {
         var defense = 0f;
         switch (damage.DamageType)
@@ -192,12 +192,20 @@ public class Character : Unit
 
         var finalDamage = Math.Max(0, damage.DamageValue - defense);
         Health -= finalDamage;
+
+        return finalDamage;
     }
 
-    public override void Attack(Unit unit)
+    public override DamageInfo Attack(Unit unit)
     {
         var damage = _skill.DamageCalculation(GetDamageCalculationParameters());
-        unit.TakeDamage(damage);
+        var damageReceived = unit.TakeDamage(damage);
+
+        return new DamageInfo
+        {
+            PotentialDamage = damage.DamageValue,
+            FinalDamage = damageReceived
+        };
     }
 
     private DamageCalculationParameters GetDamageCalculationParameters()

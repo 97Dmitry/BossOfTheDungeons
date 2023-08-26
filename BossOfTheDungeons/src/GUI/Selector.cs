@@ -5,18 +5,18 @@ namespace BossOfTheDungeons.GUI;
 public class Selector
 {
     private int _selectedIndex;
-    private string[] _options;
-    private string _prompt;
-    private int[] _separator;
-    private Action? _beforeSelector;
-    private Action? _afterSelector;
+    private readonly string[] _options;
+    private readonly string _prompt;
+    private readonly int[]? _separator;
+    private readonly Action? _beforeSelector;
+    private readonly Action? _afterSelector;
 
     public Selector(
         string[] options,
         string prompt = "(С помощью стрелок выберите действие. Enter для подтверждения)",
-        int[] separator = null,
-        Action beforeSelector = null,
-        Action afterSelector = null
+        int[]? separator = null,
+        Action? beforeSelector = null,
+        Action? afterSelector = null
     )
     {
         _options = options;

@@ -10,14 +10,14 @@ public class Item
     public readonly int Price;
     public ItemRate ItemRate { get; }
 
-    protected int Armor { get; }
-    protected Strength Strength { get; }
-    protected Dexterity Dexterity { get; }
-    protected Intelligence Intelligence { get; }
-    protected int Health { get; }
-    protected int ElementalResistance { get; }
-    protected int ChaosResistance { get; }
-    protected ItemPropertyType ItemPropertyType { get; }
+    public int Armor { get; }
+    public Strength Strength { get; }
+    public Dexterity Dexterity { get; }
+    public Intelligence Intelligence { get; }
+    public int Health { get; }
+    public int ElementalResistance { get; }
+    public int ChaosResistance { get; }
+    public ItemPropertyType ItemPropertyType { get; }
 
 
     public Item(string name, ItemTypeEnum type, int price, ItemRate itemRate)

@@ -1,126 +1,127 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E7AB5102-28B5-416A-9E14-F41D9EF8C2D5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BossOfTheDungeons</RootNamespace>
-    <AssemblyName>BossOfTheDungeons</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <LangVersion>default</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\Common\Structs\Damage.cs" />
-    <Compile Include="src\Common\Structs\DamageInfo.cs" />
-    <Compile Include="src\Dungeons\Base\Dungeon.cs" />
-    <Compile Include="src\Dungeons\Structs\DungeonLoot.cs" />
-    <Compile Include="src\GUI\Gui.cs" />
-    <Compile Include="src\GUI\Selector.cs" />
-    <Compile Include="src\Items\Base\Item.cs" />
-    <Compile Include="src\Items\Base\Weapon.cs" />
-    <Compile Include="src\Items\Enums\ItemPropertyType.cs" />
-    <Compile Include="src\Items\Enums\ItemRate.cs" />
-    <Compile Include="src\Items\Enums\ItemTypeEnum.cs" />
-    <Compile Include="src\Items\Enums\WeaponItemTypeEnum.cs" />
-    <Compile Include="src\Items\Utils\Generator\ItemGenerator.cs" />
-    <Compile Include="src\Items\Utils\Generator\ItemRareGenerator.cs" />
-    <Compile Include="src\Shopping\Base\Shop.cs" />
-    <Compile Include="src\Skills\Base\Skill.cs" />
-    <Compile Include="src\Skills\EnemySkills\DefaultAttack.cs" />
-    <Compile Include="src\Skills\Enums\DamageType.cs" />
-    <Compile Include="src\Skills\Enums\SkillType.cs" />
-    <Compile Include="src\Skills\MagicalSkills\FireBall.cs" />
-    <Compile Include="src\Skills\PhysicalSkills\DoubleStrike.cs" />
-    <Compile Include="src\Skills\PhysicalSkills\SteelStrike.cs" />
-    <Compile Include="src\Skills\Utils\DamageCalculationParameters.cs" />
-    <Compile Include="src\States\Bag\BagState.cs" />
-    <Compile Include="src\States\Characteristic\CharacteristicState.cs" />
-    <Compile Include="src\States\Dungeons\DungeonsState.cs" />
-    <Compile Include="src\States\InitCharacter\InitCharacterState.cs" />
-    <Compile Include="src\States\Inventory\InventoryState.cs" />
-    <Compile Include="src\States\Shopping\ShopState.cs" />
-    <Compile Include="src\Units\Characters\Base\Bag.cs" />
-    <Compile Include="src\Units\Characters\Base\Character.cs" />
-    <Compile Include="src\Units\Characters\Base\Inventory.cs" />
-    <Compile Include="src\Units\Characters\ClassAscendancy\Mage\Elementalist\Elementalist.cs" />
-    <Compile Include="src\Units\Characters\ClassAscendancy\Mage\Necromancer\Necromancer.cs" />
-    <Compile Include="src\Units\Characters\ClassAscendancy\Mage\Occultist\Occultist.cs" />
-    <Compile Include="src\Units\Characters\ClassAscendancy\Shadow\Assassin\Assassin.cs" />
-    <Compile Include="src\Units\Characters\ClassAscendancy\Shadow\Raider\Raider.cs" />
-    <Compile Include="src\Units\Characters\ClassAscendancy\Shadow\Trickster\Trickster.cs" />
-    <Compile Include="src\Units\Characters\ClassAscendancy\Warrior\Berserker\Berserker.cs" />
-    <Compile Include="src\Units\Characters\ClassAscendancy\Warrior\Guardian\Guardian.cs" />
-    <Compile Include="src\Units\Characters\ClassAscendancy\Warrior\Inquisitor\Inquisitor.cs" />
-    <Compile Include="src\Units\Characters\Classes\Mage\Mage.cs" />
-    <Compile Include="src\Units\Characters\Classes\Shadow\Shadow.cs" />
-    <Compile Include="src\Units\Characters\Classes\Warrior\Warrior.cs" />
-    <Compile Include="src\Units\Characters\Enums\CharacterClassEnum.cs" />
-    <Compile Include="src\Units\Characters\Structs\Dexterity.cs" />
-    <Compile Include="src\Units\Characters\Structs\Intelligence.cs" />
-    <Compile Include="src\Units\Characters\Structs\Strength.cs" />
-    <Compile Include="src\Units\Common\Unit.cs" />
-    <Compile Include="src\Units\Enemies\Base\Enemy.cs" />
-    <Compile Include="src\Units\Enemies\Bosses\Constrictor\Constrictor.cs" />
-    <Compile Include="src\Units\Enemies\Bosses\Enslaver\Enslaver.cs" />
-    <Compile Include="src\Units\Enemies\Bosses\Eradicator\Eradicator.cs" />
-    <Compile Include="src\Units\Enemies\Bosses\Purifier\Purifier.cs" />
-    <Compile Include="src\Units\Enemies\Magical\MeleeMagicEnemy.cs" />
-    <Compile Include="src\Units\Enemies\Magical\RangeMagicEnemy.cs" />
-    <Compile Include="src\Units\Enemies\Rare\BloodViper\BloodViper.cs" />
-    <Compile Include="src\Units\Enemies\Rare\FireChimera\FireChimera.cs" />
-    <Compile Include="src\Units\Enemies\Rare\Ursa\Ursa.cs" />
-    <Compile Include="src\Units\Enemies\Utils\Generator\EnemyNameGenerator.cs" />
-    <Compile Include="src\Utils\ArmorCalculation.cs" />
-    <Compile Include="src\Utils\DamageCalculation.cs" />
-    <Compile Include="src\Utils\ListExtensions.cs" />
-    <Compile Include="src\States\Base\State.cs" />
-    <Compile Include="src\States\MainMenu\MainMenuState.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\Items\Utils\" />
-    <Folder Include="src\Skills\ChaosSkills\" />
-    <Folder Include="src\Units\Enemies\Enums\" />
-    <Folder Include="src\Units\Enemies\UberBosses\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{E7AB5102-28B5-416A-9E14-F41D9EF8C2D5}</ProjectGuid>
+        <OutputType>Exe</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>BossOfTheDungeons</RootNamespace>
+        <AssemblyName>BossOfTheDungeons</AssemblyName>
+        <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <LangVersion>default</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+        <Reference Include="System.Data"/>
+        <Reference Include="System.Xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Program.cs"/>
+        <Compile Include="Game.cs"/>
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="src\Common\Structs\Damage.cs"/>
+        <Compile Include="src\Common\Structs\DamageInfo.cs"/>
+        <Compile Include="src\Dungeons\Base\Dungeon.cs"/>
+        <Compile Include="src\Dungeons\Structs\DungeonLoot.cs"/>
+        <Compile Include="src\GUI\Gui.cs"/>
+        <Compile Include="src\GUI\Selector.cs"/>
+        <Compile Include="src\Items\Base\Item.cs"/>
+        <Compile Include="src\Items\Base\Weapon.cs"/>
+        <Compile Include="src\Items\Enums\ItemPropertyType.cs"/>
+        <Compile Include="src\Items\Enums\ItemRate.cs"/>
+        <Compile Include="src\Items\Enums\ItemTypeEnum.cs"/>
+        <Compile Include="src\Items\Enums\WeaponItemTypeEnum.cs"/>
+        <Compile Include="src\Items\Utils\Generator\ItemGenerator.cs"/>
+        <Compile Include="src\Items\Utils\Generator\ItemRareGenerator.cs"/>
+        <Compile Include="src\Shopping\Base\Shop.cs"/>
+        <Compile Include="src\Skills\Base\Skill.cs"/>
+        <Compile Include="src\Skills\EnemySkills\DefaultAttack.cs"/>
+        <Compile Include="src\Skills\Enums\DamageType.cs"/>
+        <Compile Include="src\Skills\Enums\SkillType.cs"/>
+        <Compile Include="src\Skills\MagicalSkills\FireBall.cs"/>
+        <Compile Include="src\Skills\PhysicalSkills\DoubleStrike.cs"/>
+        <Compile Include="src\Skills\PhysicalSkills\SteelStrike.cs"/>
+        <Compile Include="src\Skills\Utils\DamageCalculationParameters.cs"/>
+        <Compile Include="src\States\Bag\BagState.cs"/>
+        <Compile Include="src\States\Characteristic\CharacteristicState.cs"/>
+        <Compile Include="src\States\Dungeons\DungeonsState.cs"/>
+        <Compile Include="src\States\InitCharacter\InitCharacterState.cs"/>
+        <Compile Include="src\States\Inventory\InventoryState.cs"/>
+        <Compile Include="src\States\Shopping\ShopState.cs"/>
+        <Compile Include="src\Units\Characters\Base\Bag.cs"/>
+        <Compile Include="src\Units\Characters\Base\Character.cs"/>
+        <Compile Include="src\Units\Characters\Base\Inventory.cs"/>
+        <Compile Include="src\Units\Characters\ClassAscendancy\Mage\Elementalist\Elementalist.cs"/>
+        <Compile Include="src\Units\Characters\ClassAscendancy\Mage\Necromancer\Necromancer.cs"/>
+        <Compile Include="src\Units\Characters\ClassAscendancy\Mage\Occultist\Occultist.cs"/>
+        <Compile Include="src\Units\Characters\ClassAscendancy\Shadow\Assassin\Assassin.cs"/>
+        <Compile Include="src\Units\Characters\ClassAscendancy\Shadow\Raider\Raider.cs"/>
+        <Compile Include="src\Units\Characters\ClassAscendancy\Shadow\Trickster\Trickster.cs"/>
+        <Compile Include="src\Units\Characters\ClassAscendancy\Warrior\Berserker\Berserker.cs"/>
+        <Compile Include="src\Units\Characters\ClassAscendancy\Warrior\Guardian\Guardian.cs"/>
+        <Compile Include="src\Units\Characters\ClassAscendancy\Warrior\Inquisitor\Inquisitor.cs"/>
+        <Compile Include="src\Units\Characters\Classes\Mage\Mage.cs"/>
+        <Compile Include="src\Units\Characters\Classes\Shadow\Shadow.cs"/>
+        <Compile Include="src\Units\Characters\Classes\Warrior\Warrior.cs"/>
+        <Compile Include="src\Units\Characters\Enums\CharacterClassEnum.cs"/>
+        <Compile Include="src\Units\Characters\Structs\Dexterity.cs"/>
+        <Compile Include="src\Units\Characters\Structs\Intelligence.cs"/>
+        <Compile Include="src\Units\Characters\Structs\Strength.cs"/>
+        <Compile Include="src\Units\Common\Unit.cs"/>
+        <Compile Include="src\Units\Enemies\Base\Enemy.cs"/>
+        <Compile Include="src\Units\Enemies\Bosses\Constrictor\Constrictor.cs"/>
+        <Compile Include="src\Units\Enemies\Bosses\Enslaver\Enslaver.cs"/>
+        <Compile Include="src\Units\Enemies\Bosses\Eradicator\Eradicator.cs"/>
+        <Compile Include="src\Units\Enemies\Bosses\Purifier\Purifier.cs"/>
+        <Compile Include="src\Units\Enemies\Magical\MeleeMagicEnemy.cs"/>
+        <Compile Include="src\Units\Enemies\Magical\RangeMagicEnemy.cs"/>
+        <Compile Include="src\Units\Enemies\Rare\BloodViper\BloodViper.cs"/>
+        <Compile Include="src\Units\Enemies\Rare\FireChimera\FireChimera.cs"/>
+        <Compile Include="src\Units\Enemies\Rare\Ursa\Ursa.cs"/>
+        <Compile Include="src\Units\Enemies\Utils\Generator\EnemyNameGenerator.cs"/>
+        <Compile Include="src\Utils\ArmorCalculation.cs"/>
+        <Compile Include="src\Utils\DamageCalculation.cs"/>
+        <Compile Include="src\Utils\ListExtensions.cs"/>
+        <Compile Include="src\States\Base\State.cs"/>
+        <Compile Include="src\States\MainMenu\MainMenuState.cs"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="src\Items\Utils\"/>
+        <Folder Include="src\Skills\ChaosSkills\"/>
+        <Folder Include="src\Units\Enemies\Enums\"/>
+        <Folder Include="src\Units\Enemies\UberBosses\"/>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+           Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+      -->
 </Project>

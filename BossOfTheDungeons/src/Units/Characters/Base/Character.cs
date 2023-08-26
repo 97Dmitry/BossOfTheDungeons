@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BossOfTheDungeons.Common.Structs;
+using BossOfTheDungeons.Dungeons.Structs;
 using BossOfTheDungeons.Items.Base;
 using BossOfTheDungeons.Items.Enums;
 using BossOfTheDungeons.Skills.Base;
@@ -51,10 +53,10 @@ public class Character : Unit
         _class = characterClass;
         _inventory = new Inventory();
         _bag = new Bag();
-        CalculateCharacterAttributes(characterClass);
+        CalculateInitialCharacterAttributes(characterClass);
     }
 
-    private void CalculateCharacterAttributes(CharacterClassEnum characterClass)
+    private void CalculateInitialCharacterAttributes(CharacterClassEnum characterClass)
     {
         switch (characterClass)
         {
@@ -118,6 +120,78 @@ public class Character : Unit
         }
     }
 
+    private int GetPhysicalDamage()
+    {
+        var weapons = _inventory.GetWeaponItemsList();
+        return _physicalDamage + weapons.Sum(weapon => weapon.PhysicalDamage);
+    }
+
+    private int GetMagicalDamage()
+    {
+        var weapons = _inventory.GetWeaponItemsList();
+        return _magicalDamage + weapons.Sum(weapon => weapon.MagicalDamage);
+    }
+
+    private int GetChaosDamage()
+    {
+        var weapons = _inventory.GetWeaponItemsList();
+        return _chaosDamage + weapons.Sum(weapon => weapon.ChaosDamage);
+    }
+
+    private int GetAttackSpeed()
+    {
+        var items = _inventory.GetWeaponItemsList();
+        return _attackSpeed + items.Sum(item => item.AttackSpeed);
+    }
+
+    private int GetAccuracy()
+    {
+        var items = _inventory.GetWeaponItemsList();
+        return _accuracy + items.Sum(item => item.Accuracy);
+    }
+
+    private int GetCastSpeed()
+    {
+        var items = _inventory.GetWeaponItemsList();
+        return _castSpeed + items.Sum(item => item.CastSpeed);
+    }
+
+    private int GetArmor()
+    {
+        var items = _inventory.GetArmorItemsLit();
+        return _armor + items.Sum(item => item.Armor);
+    }
+
+    private int GetElementalResistance()
+    {
+        var items = _inventory.GetArmorItemsLit();
+        return _elementalResistance + items.Sum(item => item.ElementalResistance);
+    }
+
+    private int GetChaosResistance()
+    {
+        var items = _inventory.GetArmorItemsLit();
+        return _chaosResistance + items.Sum(item => item.ChaosResistance);
+    }
+
+    private Strength GetStrength()
+    {
+        var items = _inventory.GetArmorItemsLit();
+        return _strength + items.Sum(item => item.Strength);
+    }
+
+    private Dexterity GetDexterity()
+    {
+        var items = _inventory.GetArmorItemsLit();
+        return _dexterity + items.Sum(item => item.Dexterity);
+    }
+
+    private Intelligence GetIntelligence()
+    {
+        var items = _inventory.GetArmorItemsLit();
+        return _intelligence + items.Sum(item => item.Intelligence);
+    }
+
     public void CharacterInfo()
     {
         var damage = _skill.DamageCalculation(GetDamageCalculationParameters());
@@ -176,15 +250,15 @@ public class Character : Unit
         switch (damage.DamageType)
         {
             case DamageType.PhysicalDamage:
-                defense = _armor + _strength;
-                defense += _dexterity * _armor / 100.0f;
+                defense = GetArmor() + GetStrength();
+                defense += GetDexterity() * GetArmor() / 100.0f;
                 break;
             case DamageType.MagicalDamage:
-                defense = _elementalResistance + _intelligence;
-                defense += _intelligence * _elementalResistance / 100.0f;
+                defense = GetElementalResistance() + GetIntelligence();
+                defense += GetIntelligence() * GetElementalResistance() / 100.0f;
                 break;
             case DamageType.ChaosDamage:
-                defense = _chaosResistance + _intelligence / 2f;
+                defense = GetChaosResistance() + GetIntelligence() / 2f;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -212,15 +286,20 @@ public class Character : Unit
     {
         return new DamageCalculationParameters
         {
-            PhysicalDamage = _physicalDamage,
-            MagicalDamage = _magicalDamage,
-            ChaosDamage = _chaosDamage,
-            AttackSpeed = _attackSpeed,
-            CastSpeed = _castSpeed,
-            Accuracy = _accuracy,
-            Strength = _strength,
-            Dexterity = _dexterity,
-            Intelligence = _intelligence
+            PhysicalDamage = GetPhysicalDamage(),
+            MagicalDamage = GetMagicalDamage(),
+            ChaosDamage = GetChaosDamage(),
+            AttackSpeed = GetAttackSpeed(),
+            CastSpeed = GetCastSpeed(),
+            Accuracy = GetAccuracy(),
+            Strength = GetStrength(),
+            Dexterity = GetDexterity(),
+            Intelligence = GetIntelligence()
         };
+    }
+
+    public void TakeDungeonLoot(DungeonLoot loot)
+    {
+        _bag.AddMoney(loot.Money);
     }
 }

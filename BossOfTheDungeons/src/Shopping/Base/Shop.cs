@@ -23,9 +23,9 @@ public class Shop
         Console.WriteLine("Товары магазина:\n");
         for (var i = 0; i < _products.Count; i++)
             if (_products[i] is Weapon weapon)
-                Console.WriteLine($"{i + 1}. {weapon.Name} {weapon.Type} {weapon.WeaponType} ");
+                Console.WriteLine($"{i + 1}. {weapon.Name} {weapon.Type} {weapon.WeaponType}. Цена: {weapon.Price}");
             else
-                Console.WriteLine($"{i + 1}. {_products[i].Name} {_products[i].Type} ");
+                Console.WriteLine($"{i + 1}. {_products[i].Name} {_products[i].Type}. Цена: {_products[i].Price} ");
         Console.Write("\n");
     }
 

@@ -51,6 +51,7 @@ public class DungeonsState : State
                         Console.WriteLine(
                             $"Последний враг пал! Вы нанесли сокрушительный удар по {deadEnemies[0].Name}");
                         var loot = _dungeon.Win();
+                        _character.TakeDungeonLoot(loot);
                         Console.WriteLine($"Ваша награда: {loot.Money} золота");
                         Console.ReadKey();
                         break;

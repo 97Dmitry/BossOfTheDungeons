@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BossOfTheDungeons.Items.Base;
 using BossOfTheDungeons.Items.Enums;
 
@@ -143,5 +144,29 @@ public class Inventory
 
                 break;
         }
+    }
+
+    public Item[] GetArmorItemsLit()
+    {
+        var items = new List<Item>();
+        if (_helmet != null) items.Add(_helmet);
+        if (_gloves != null) items.Add(_gloves);
+        if (_boots != null) items.Add(_boots);
+        if (_armor != null) items.Add(_armor);
+        if (_belt != null) items.Add(_belt);
+        if (_ring1 != null) items.Add(_ring1);
+        if (_ring2 != null) items.Add(_ring2);
+        if (_amulet != null) items.Add(_amulet);
+
+        return items.ToArray();
+    }
+
+    public Weapon[] GetWeaponItemsList()
+    {
+        var weapons = new List<Weapon>();
+        if (_weapon1 != null) weapons.Add(_weapon1);
+        if (_weapon2 != null) weapons.Add(_weapon2);
+
+        return weapons.ToArray();
     }
 }

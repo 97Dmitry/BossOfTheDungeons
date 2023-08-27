@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BossOfTheDungeons.Dungeons.Base;
 using BossOfTheDungeons.GUI;
+using BossOfTheDungeons.Shopping.Base;
 using BossOfTheDungeons.States.Base;
 using BossOfTheDungeons.Units.Characters.Base;
 
@@ -11,11 +12,13 @@ public class DungeonsState : State
 {
     private readonly Dungeon _dungeon;
     private readonly Character _character;
+    private readonly Shop _shop;
 
-    public DungeonsState(Stack<State> states, Dungeon dungeon, Character character) : base(states)
+    public DungeonsState(Stack<State> states, Dungeon dungeon, Character character, Shop shop) : base(states)
     {
         _dungeon = dungeon;
         _character = character;
+        _shop = shop;
     }
 
     public override void Update()
@@ -54,6 +57,7 @@ public class DungeonsState : State
                         _character.TakeDungeonLoot(loot);
                         Console.WriteLine($"Ваша награда: {loot.Money} золота");
                         Console.ReadKey();
+                        _shop.UpdateProducts();
                         break;
                     }
 

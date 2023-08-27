@@ -39,7 +39,7 @@ public class MainMenuState : State
         if (selectedIndex == 1) AddStack(new BagState(Stacks, _character));
         if (selectedIndex == 2) AddStack(new ShopState(Stacks, _character, _shop));
         if (selectedIndex == 3) AddStack(new InventoryState(Stacks, _character));
-        if (selectedIndex == 4) AddStack(new DungeonsState(Stacks, _dungeon, _character));
+        if (selectedIndex == 4) AddStack(new DungeonsState(Stacks, _dungeon, _character, _shop));
         if (selectedIndex == 5) End = true;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BossOfTheDungeons.Items.Base;
+using BossOfTheDungeons.Items.Utils.Generator;
 using BossOfTheDungeons.Units.Characters.Base;
 using BossOfTheDungeons.Utils;
 
@@ -10,6 +11,7 @@ public class Shop
 {
     private int _money;
     private readonly List<Item> _products = new();
+    private readonly Random random = new();
 
     public Shop(Item[] items)
     {
@@ -70,5 +72,14 @@ public class Shop
         var money = character.BuyItem(_products[id]);
         _money += money;
         return _products.RemoveAtAndReturn(id);
+    }
+
+    public void UpdateProducts()
+    {
+        _products.Clear();
+        var productRange = random.Next(1, 7);
+        var items = new Item[productRange];
+        for (var i = 0; i < productRange; i++) items[i] = ItemGenerator.Generate();
+        _products.AddRange(items);
     }
 }

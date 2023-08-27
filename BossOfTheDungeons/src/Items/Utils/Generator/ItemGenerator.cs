@@ -1,4 +1,5 @@
 ﻿using System;
+using BossOfTheDungeons.Dungeons.Base;
 using BossOfTheDungeons.Items.Base;
 using BossOfTheDungeons.Items.Enums;
 using BossOfTheDungeons.Units.Characters.Structs;
@@ -11,6 +12,7 @@ public static class ItemGenerator
 
     public static Item Generate()
     {
+        var dungeonLevel = Dungeon.Level;
         var itemTypes = Enum.GetValues(typeof(ItemTypeEnum));
         var itemType = (ItemTypeEnum)itemTypes.GetValue(Random.Next(itemTypes.Length));
 
@@ -44,28 +46,28 @@ public static class ItemGenerator
             switch (itemPropertyType)
             {
                 case ItemPropertyType.Strength:
-                    physicalDamage = Random.Next(1, 9);
-                    magicalDamage = Random.Next(1, 3);
-                    chaosDamage = Random.Next(1, 3);
-                    attackSpeed = Random.Next(1, 6);
-                    castSpeed = Random.Next(1, 3);
-                    accuracy = Random.Next(1, 5);
+                    physicalDamage = Random.Next(1, 9 + dungeonLevel);
+                    magicalDamage = Random.Next(1, 3 + dungeonLevel);
+                    chaosDamage = Random.Next(1, 3 + dungeonLevel);
+                    attackSpeed = Random.Next(1, 6 + dungeonLevel);
+                    castSpeed = Random.Next(1, 3 + dungeonLevel);
+                    accuracy = Random.Next(1, 5 + dungeonLevel);
                     break;
                 case ItemPropertyType.Dexterity:
-                    physicalDamage = Random.Next(1, 7);
-                    magicalDamage = Random.Next(1, 3);
-                    chaosDamage = Random.Next(1, 11);
-                    attackSpeed = Random.Next(1, 9);
-                    castSpeed = Random.Next(1, 3);
-                    accuracy = Random.Next(1, 11);
+                    physicalDamage = Random.Next(1, 7 + dungeonLevel);
+                    magicalDamage = Random.Next(1, 3 + dungeonLevel);
+                    chaosDamage = Random.Next(1, 11 + dungeonLevel);
+                    attackSpeed = Random.Next(1, 9 + dungeonLevel);
+                    castSpeed = Random.Next(1, 3 + dungeonLevel);
+                    accuracy = Random.Next(1, 11 + dungeonLevel);
                     break;
                 case ItemPropertyType.Intelligence:
-                    physicalDamage = Random.Next(1, 3);
-                    magicalDamage = Random.Next(1, 16);
-                    chaosDamage = Random.Next(1, 7);
-                    attackSpeed = Random.Next(1, 5);
-                    castSpeed = Random.Next(1, 11);
-                    accuracy = Random.Next(1, 4);
+                    physicalDamage = Random.Next(1, 3 + dungeonLevel);
+                    magicalDamage = Random.Next(1, 16 + dungeonLevel);
+                    chaosDamage = Random.Next(1, 7 + dungeonLevel);
+                    attackSpeed = Random.Next(1, 5 + dungeonLevel);
+                    castSpeed = Random.Next(1, 11 + dungeonLevel);
+                    accuracy = Random.Next(1, 4 + dungeonLevel);
                     break;
                 default:
                     throw new InvalidOperationException("Invalid ItemPropertyType enum value");
@@ -97,38 +99,38 @@ public static class ItemGenerator
         switch (itemPropertyType)
         {
             case ItemPropertyType.Strength:
-                armor = Random.Next(1, 11);
-                strength = new Strength(Random.Next(1, 19));
-                dexterity = new Dexterity(Random.Next(1, 5));
-                intelligence = new Intelligence(Random.Next(1, 3));
-                health = Random.Next(1, 23);
-                elementalResistance = Random.Next(1, 9);
-                chaosResistance = Random.Next(1, 5);
+                armor = Random.Next(1, 11 + dungeonLevel);
+                strength = new Strength(Random.Next(1, 19 + dungeonLevel));
+                dexterity = new Dexterity(Random.Next(1, 5 + dungeonLevel));
+                intelligence = new Intelligence(Random.Next(1, 3 + dungeonLevel));
+                health = Random.Next(1, 23 + dungeonLevel);
+                elementalResistance = Random.Next(1, 9 + dungeonLevel);
+                chaosResistance = Random.Next(1, 5 + dungeonLevel);
                 break;
             case ItemPropertyType.Dexterity:
-                armor = Random.Next(1, 7);
-                strength = new Strength(Random.Next(1, 9));
-                dexterity = new Dexterity(Random.Next(1, 19));
-                intelligence = new Intelligence(Random.Next(1, 5));
-                health = Random.Next(1, 16);
-                elementalResistance = Random.Next(1, 13);
-                chaosResistance = Random.Next(1, 9);
+                armor = Random.Next(1, 7 + dungeonLevel);
+                strength = new Strength(Random.Next(1, 9 + dungeonLevel));
+                dexterity = new Dexterity(Random.Next(1, 19 + dungeonLevel));
+                intelligence = new Intelligence(Random.Next(1, 5 + dungeonLevel));
+                health = Random.Next(1, 16 + dungeonLevel);
+                elementalResistance = Random.Next(1, 13 + dungeonLevel);
+                chaosResistance = Random.Next(1, 9 + dungeonLevel);
                 break;
             case ItemPropertyType.Intelligence:
-                armor = Random.Next(1, 5);
-                strength = new Strength(Random.Next(1, 7));
-                dexterity = new Dexterity(Random.Next(1, 5));
-                intelligence = new Intelligence(Random.Next(1, 23));
-                health = Random.Next(1, 11);
-                elementalResistance = Random.Next(1, 21);
-                chaosResistance = Random.Next(1, 13);
+                armor = Random.Next(1, 5 + dungeonLevel);
+                strength = new Strength(Random.Next(1, 7 + dungeonLevel));
+                dexterity = new Dexterity(Random.Next(1, 5 + dungeonLevel));
+                intelligence = new Intelligence(Random.Next(1, 23 + dungeonLevel));
+                health = Random.Next(1, 11 + dungeonLevel);
+                elementalResistance = Random.Next(1, 21 + dungeonLevel);
+                chaosResistance = Random.Next(1, 13 + dungeonLevel);
                 break;
             default:
                 throw new InvalidOperationException("Invalid ItemPropertyType enum value");
         }
 
         var item = new Item(
-            GenerateItemName(itemType),
+            GenerateItemName(itemType) + $" +{dungeonLevel}",
             itemType,
             itemPrice,
             itemRare,

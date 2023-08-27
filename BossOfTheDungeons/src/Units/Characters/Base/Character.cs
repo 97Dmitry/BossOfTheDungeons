@@ -140,76 +140,82 @@ public class Character : Unit
         }
     }
 
+    private int GetStat<T>(Func<T, int> statSelector, IEnumerable<T> items)
+    {
+        return items.Sum(statSelector);
+    }
+
     private int GetPhysicalDamage()
     {
         var weapons = _inventory.GetWeaponItemsList();
-        return _physicalDamage + weapons.Sum(weapon => weapon.PhysicalDamage);
+        return _physicalDamage + GetStat(weapon => weapon.PhysicalDamage, weapons);
     }
 
     private int GetMagicalDamage()
     {
         var weapons = _inventory.GetWeaponItemsList();
-        return _magicalDamage + weapons.Sum(weapon => weapon.MagicalDamage);
+        return _magicalDamage + GetStat(weapon => weapon.MagicalDamage, weapons);
     }
 
     private int GetChaosDamage()
     {
         var weapons = _inventory.GetWeaponItemsList();
-        return _chaosDamage + weapons.Sum(weapon => weapon.ChaosDamage);
+        return _chaosDamage + GetStat(weapon => weapon.ChaosDamage, weapons);
     }
 
     private int GetAttackSpeed()
     {
-        var items = _inventory.GetWeaponItemsList();
-        return _attackSpeed + items.Sum(item => item.AttackSpeed);
+        var weapons = _inventory.GetWeaponItemsList();
+        return _attackSpeed + GetStat(weapon => weapon.AttackSpeed, weapons);
+    }
+
+
+    private int GetCastSpeed()
+    {
+        var weapons = _inventory.GetWeaponItemsList();
+        return _castSpeed + GetStat(weapon => weapon.CastSpeed, weapons);
     }
 
     private int GetAccuracy()
     {
-        var items = _inventory.GetWeaponItemsList();
-        return _accuracy + items.Sum(item => item.Accuracy);
-    }
-
-    private int GetCastSpeed()
-    {
-        var items = _inventory.GetWeaponItemsList();
-        return _castSpeed + items.Sum(item => item.CastSpeed);
+        var weapons = _inventory.GetWeaponItemsList();
+        return _accuracy + GetStat(weapon => weapon.Accuracy, weapons);
     }
 
     private int GetArmor()
     {
         var items = _inventory.GetArmorItemsLit();
-        return _armor + items.Sum(item => item.Armor);
+        return _armor + GetStat(weapon => weapon.Armor, items);
     }
 
     private int GetElementalResistance()
     {
         var items = _inventory.GetArmorItemsLit();
-        return _elementalResistance + items.Sum(item => item.ElementalResistance);
+        return _elementalResistance + GetStat(weapon => weapon.ElementalResistance, items);
     }
 
     private int GetChaosResistance()
     {
         var items = _inventory.GetArmorItemsLit();
-        return _chaosResistance + items.Sum(item => item.ChaosResistance);
+        return _chaosResistance + GetStat(weapon => weapon.ChaosResistance, items);
     }
 
     private Strength GetStrength()
     {
         var items = _inventory.GetArmorItemsLit();
-        return _strength + items.Sum(item => item.Strength);
+        return _strength + GetStat(weapon => weapon.Strength, items);
     }
 
     private Dexterity GetDexterity()
     {
         var items = _inventory.GetArmorItemsLit();
-        return _dexterity + items.Sum(item => item.Dexterity);
+        return _dexterity + GetStat(weapon => weapon.Dexterity, items);
     }
 
     private Intelligence GetIntelligence()
     {
         var items = _inventory.GetArmorItemsLit();
-        return _intelligence + items.Sum(item => item.Intelligence);
+        return _intelligence + GetStat(weapon => weapon.Intelligence, items);
     }
 
     public void CharacterInfo()

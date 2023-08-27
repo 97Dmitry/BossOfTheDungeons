@@ -23,9 +23,25 @@ public class Shop
         Console.WriteLine("Товары магазина:\n");
         for (var i = 0; i < _products.Count; i++)
             if (_products[i] is Weapon weapon)
+            {
                 Console.WriteLine($"{i + 1}. {weapon.Name} {weapon.Type} {weapon.WeaponType}. Цена: {weapon.Price}");
+                Console.WriteLine(
+                    $"\tУрон предмета: Физический урон: {weapon.PhysicalDamage}, Магический урон: {weapon.MagicalDamage}, Урон хаосом: {weapon.ChaosDamage}.");
+                Console.WriteLine(
+                    $"\tБонусные характеристики: Точность: {weapon.Accuracy}, Скорость атаки: {weapon.AttackSpeed}, Скорость сотворения чар: {weapon.CastSpeed}.");
+            }
             else
-                Console.WriteLine($"{i + 1}. {_products[i].Name} {_products[i].Type}. Цена: {_products[i].Price} ");
+            {
+                var item = _products[i];
+                Console.WriteLine($"{i + 1}. {item.Name} {item.Type}. Цена: {item.Price} ");
+                Console.WriteLine(
+                    $"\tХарактеристик: Сила: {(int)item.Strength}, Ловкость: {(int)item.Dexterity}, Интеллект: {(int)item.Intelligence}.");
+                Console.WriteLine(
+                    $"\tБонусные характеристики: Здоровье: {item.Health}, Броня: {item.Armor}.");
+                Console.WriteLine(
+                    $"\tСопротивления: Стихиям: {item.ElementalResistance}, Хаосу: {item.ChaosResistance}.");
+            }
+
         Console.Write("\n");
     }
 

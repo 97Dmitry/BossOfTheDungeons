@@ -19,22 +19,11 @@ public class Dungeon
         GenerateEnemies();
     }
 
-    public void GenerateEnemies()
+    private void GenerateEnemies()
     {
         if (Level < 10) Enemies.Add(new Enemy(Level));
-
-        if (Level is > 9 and < 20)
-        {
-            Enemies.Add(new Enemy(Level));
-            Enemies.Add(new Enemy(Level));
-        }
-
-        if (Level > 19)
-        {
-            Enemies.Add(new Enemy(Level));
-            Enemies.Add(new Enemy(Level));
-            Enemies.Add(new Enemy(Level));
-        }
+        if (Level is > 9 and < 20) Enemies.AddRange(new List<Enemy> { new(Level), new(Level) });
+        if (Level > 19) Enemies.AddRange(new List<Enemy> { new(Level), new(Level), new(Level) });
     }
 
     public List<Enemy> CheckAndRemoveDeadEnemies()

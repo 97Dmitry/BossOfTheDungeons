@@ -4,6 +4,7 @@ using BossOfTheDungeons.Dungeons.Base;
 using BossOfTheDungeons.GUI;
 using BossOfTheDungeons.Shopping.Base;
 using BossOfTheDungeons.States.Base;
+using BossOfTheDungeons.States.EndGame;
 using BossOfTheDungeons.Units.Characters.Base;
 
 namespace BossOfTheDungeons.States.Dungeons;
@@ -78,6 +79,12 @@ public class DungeonsState : State
                     Console.WriteLine($"Всего урона получено: {receivedDamage}. Заблокировано: {blockedDamage}");
 
                     Console.ReadKey();
+
+                    if (_character.Health <= 0)
+                    {
+                        AddStack(new EndGameState(Stacks, _character, _dungeon));
+                        return;
+                    }
                 }
                 else
                 {

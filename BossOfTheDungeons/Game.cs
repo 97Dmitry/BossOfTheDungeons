@@ -45,6 +45,7 @@ public class Game
             _states.Peek().Update();
             if (_states.Peek().RequestEnd())
                 _states.Pop();
+            if (_states.Peek().RequestEndGame()) _states.Clear();
         }
     }
 }

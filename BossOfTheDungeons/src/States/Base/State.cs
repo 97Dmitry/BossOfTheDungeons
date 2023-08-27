@@ -1,6 +1,5 @@
-using BossOfTheDungeons.GUI;
-using System;
 using System.Collections.Generic;
+using BossOfTheDungeons.GUI;
 
 namespace BossOfTheDungeons.States.Base;
 
@@ -8,6 +7,7 @@ public class State
 {
     protected readonly Stack<State> Stacks;
     protected bool End = false;
+    protected bool EndGame = false;
 
     protected State(Stack<State> stacks)
     {
@@ -17,6 +17,11 @@ public class State
     public bool RequestEnd()
     {
         return End;
+    }
+
+    public bool RequestEndGame()
+    {
+        return EndGame;
     }
 
     protected void AddStack(State state)

@@ -70,6 +70,7 @@
         <Compile Include="src\States\Bag\BagState.cs"/>
         <Compile Include="src\States\Characteristic\CharacteristicState.cs"/>
         <Compile Include="src\States\Dungeons\DungeonsState.cs"/>
+        <Compile Include="src\States\EndGame\EndGameState.cs"/>
         <Compile Include="src\States\InitCharacter\InitCharacterState.cs"/>
         <Compile Include="src\States\Inventory\InventoryState.cs"/>
         <Compile Include="src\States\Shopping\ShopState.cs"/>

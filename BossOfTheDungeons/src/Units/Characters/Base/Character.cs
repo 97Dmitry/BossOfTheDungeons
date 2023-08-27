@@ -33,7 +33,21 @@ public class Character : Unit
 
     // Combat
     public float Health { get; private set; }
-    public int FullHealth { get; private set; }
+    private int _fullHealth;
+
+    public int FullHealth
+    {
+        get => _fullHealth;
+        private set
+        {
+            if (_fullHealth != value)
+            {
+                RecalculateHealth(_fullHealth, value);
+                _fullHealth = value;
+            }
+        }
+    }
+
     private int _physicalDamage;
     private int _magicalDamage;
     private int _chaosDamage;
@@ -56,6 +70,12 @@ public class Character : Unit
         CalculateInitialCharacterAttributes(characterClass);
     }
 
+    private void RecalculateHealth(float oldFullHealthValue, float newFullHealthValue)
+    {
+        var healthPercentage = Health / oldFullHealthValue;
+        Health = healthPercentage * newFullHealthValue;
+    }
+
     private void CalculateInitialCharacterAttributes(CharacterClassEnum characterClass)
     {
         switch (characterClass)
@@ -66,7 +86,7 @@ public class Character : Unit
                 _intelligence = 1;
 
                 Health = 100f;
-                FullHealth = (int)Health;
+                _fullHealth = (int)Health;
                 _physicalDamage = 10;
                 _magicalDamage = 0;
                 _chaosDamage = 0;
@@ -85,7 +105,7 @@ public class Character : Unit
                 _intelligence = 2;
 
                 Health = 75f;
-                FullHealth = (int)Health;
+                _fullHealth = (int)Health;
                 _physicalDamage = 6;
                 _magicalDamage = 1;
                 _chaosDamage = 2;
@@ -104,7 +124,7 @@ public class Character : Unit
                 _intelligence = 12;
 
                 Health = 50f;
-                FullHealth = (int)Health;
+                _fullHealth = (int)Health;
                 _physicalDamage = 1;
                 _magicalDamage = 8;
                 _chaosDamage = 1;
@@ -199,7 +219,7 @@ public class Character : Unit
         Console.WriteLine("Данные о вашем персонаже:");
         Console.WriteLine($"Имя: {Name}");
         Console.WriteLine($"Класс: {_class}\n");
-        Console.WriteLine($"Здоровье: {FullHealth}");
+        Console.WriteLine($"Здоровье: {Health}/{FullHealth}");
         Console.WriteLine($"Выбранная способность: {_skill.Name}");
         Console.WriteLine($"Урон: {damage.DamageValue}");
     }
@@ -228,7 +248,8 @@ public class Character : Unit
 
     public void PutItem(Item item, int? slot = 1)
     {
-        _inventory.SetItem(item, _bag, slot);
+        _inventory.SetItem(item, _bag, slot, addedHealth => FullHealth -= addedHealth);
+        if (item is not Weapon) FullHealth += item.Health;
     }
 
     public bool IsCanPay(Item item)

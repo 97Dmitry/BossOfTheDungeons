@@ -7,12 +7,12 @@ namespace BossOfTheDungeons.Skills.EnemySkills;
 
 public class DefaultAttack : Skill
 {
-    public DefaultAttack(int damage) : base("Обычная атака", damage, DamageType.PhysicalDamage, SkillType.Normal)
-    {
-    }
+  public DefaultAttack(int damage) : base("Обычная атака", damage, DamageType.PhysicalDamage, SkillType.Normal, "")
+  {
+  }
 
-    public override Damage DamageCalculation(DamageCalculationParameters parameters)
-    {
-        return base.DamageCalculation(parameters);
-    }
+  public override Damage DamageCalculation(DamageCalculationParameters parameters)
+  {
+    return base.DamageCalculation(parameters);
+  }
 }
